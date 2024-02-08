@@ -43,10 +43,10 @@
         │   ├── MainSearchCoordinator.swift
         ├── Flows
         │   ├── IConfigurator.swift
-        │   ├── PictureFlow
+        │   ├── MainFlow
         │   │   ├── TabBarController.swift
         │   │   └── TabBarPage.swift
-        │   ├── LoginFlow
+        │   ├── PictureFlow
         │   │   └── MainPicturesScene
         │   │       ├── MainPicturesAssembler.swift
         │   │       ├── MainPicturesViewController.swift
