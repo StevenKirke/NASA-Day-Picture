@@ -58,7 +58,7 @@
         │   │       ├── MainPicturesPresenter.swift
         │   │       ├── MainPicturesViewModel.swift
         │   │       └── Worker
-   	    │   │           ├── MainPicturesWorker.swift
+        │   │           ├── MainPicturesWorker.swift
         │   │           └── CollectionDTO.swift
         │   └── SearchFlow
         │       └── MainSearchScene
