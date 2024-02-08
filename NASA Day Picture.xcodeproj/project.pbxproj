@@ -35,6 +35,10 @@
 		32D8A9912B74C4580015F1CE /* MainSearchPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9902B74C4580015F1CE /* MainSearchPresentor.swift */; };
 		32D8A9932B74C46E0015F1CE /* MainSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9922B74C46E0015F1CE /* MainSearchViewModel.swift */; };
 		32D8A9952B74C47F0015F1CE /* MainSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9942B74C47F0015F1CE /* MainSearchWorker.swift */; };
+		32D8A9972B74F90A0015F1CE /* DecodeJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9962B74F90A0015F1CE /* DecodeJSONManager.swift */; };
+		32D8A9992B74F9440015F1CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9982B74F9440015F1CE /* NetworkManager.swift */; };
+		32D8A99C2B750DB20015F1CE /* CollectionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A99B2B750DB20015F1CE /* CollectionDTO.swift */; };
+		32D8A99F2B7511580015F1CE /* URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A99E2B7511580015F1CE /* URLS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +73,10 @@
 		32D8A9902B74C4580015F1CE /* MainSearchPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchPresentor.swift; sourceTree = "<group>"; };
 		32D8A9922B74C46E0015F1CE /* MainSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewModel.swift; sourceTree = "<group>"; };
 		32D8A9942B74C47F0015F1CE /* MainSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchWorker.swift; sourceTree = "<group>"; };
+		32D8A9962B74F90A0015F1CE /* DecodeJSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeJSONManager.swift; sourceTree = "<group>"; };
+		32D8A9982B74F9440015F1CE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		32D8A99B2B750DB20015F1CE /* CollectionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDTO.swift; sourceTree = "<group>"; };
+		32D8A99E2B7511580015F1CE /* URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 		32D8A93D2B74B7EE0015F1CE /* NASA Day Picture */ = {
 			isa = PBXGroup;
 			children = (
+				32D8A99D2B75114A0015F1CE /* Emums */,
 				32D8A9752B74C24D0015F1CE /* Assets */,
 				32D8A97C2B74C2B40015F1CE /* Extension */,
 				32D8A9572B74B8450015F1CE /* Managers */,
@@ -157,6 +166,8 @@
 		32D8A9572B74B8450015F1CE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				32D8A9962B74F90A0015F1CE /* DecodeJSONManager.swift */,
+				32D8A9982B74F9440015F1CE /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -204,7 +215,7 @@
 				32D8A9672B74BB510015F1CE /* MainPicturesIterator.swift */,
 				32D8A9692B74BB5F0015F1CE /* MainPicturesPresenter.swift */,
 				32D8A96B2B74BB6C0015F1CE /* MainPicturesViewModel.swift */,
-				32D8A96D2B74BB7A0015F1CE /* MainPicturesWorker.swift */,
+				32D8A99A2B74F9850015F1CE /* Worker */,
 			);
 			path = MainPicturesScene;
 			sourceTree = "<group>";
@@ -255,6 +266,23 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		32D8A99A2B74F9850015F1CE /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A96D2B74BB7A0015F1CE /* MainPicturesWorker.swift */,
+				32D8A99B2B750DB20015F1CE /* CollectionDTO.swift */,
+			);
+			name = Worker;
+			sourceTree = "<group>";
+		};
+		32D8A99D2B75114A0015F1CE /* Emums */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A99E2B7511580015F1CE /* URLS.swift */,
+			);
+			name = Emums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,10 +290,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D8A94F2B74B7EF0015F1CE /* Build configuration list for PBXNativeTarget "NASA Day Picture" */;
 			buildPhases = (
+				32D8A9612B74BA6E0015F1CE /* Run SwiftLint */,
 				32D8A9372B74B7EE0015F1CE /* Sources */,
 				32D8A9382B74B7EE0015F1CE /* Frameworks */,
 				32D8A9392B74B7EE0015F1CE /* Resources */,
-				32D8A9612B74BA6E0015F1CE /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -349,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D8A9992B74F9440015F1CE /* NetworkManager.swift in Sources */,
 				32D8A9782B74C26C0015F1CE /* CustomColors.swift in Sources */,
 				32D8A9832B74C3320015F1CE /* AppCoordinator.swift in Sources */,
 				32D8A93F2B74B7EE0015F1CE /* AppDelegate.swift in Sources */,
@@ -360,8 +389,10 @@
 				32D8A98B2B74C41F0015F1CE /* MainSearchAssembler.swift in Sources */,
 				32D8A9852B74C3560015F1CE /* MainCoordinator.swift in Sources */,
 				32D8A9682B74BB510015F1CE /* MainPicturesIterator.swift in Sources */,
+				32D8A9972B74F90A0015F1CE /* DecodeJSONManager.swift in Sources */,
 				32D8A97B2B74C2930015F1CE /* StyleColors.swift in Sources */,
 				32D8A9702B74BF900015F1CE /* IConfigurator.swift in Sources */,
+				32D8A99F2B7511580015F1CE /* URLS.swift in Sources */,
 				32D8A96C2B74BB6C0015F1CE /* MainPicturesViewModel.swift in Sources */,
 				32D8A9932B74C46E0015F1CE /* MainSearchViewModel.swift in Sources */,
 				32D8A98F2B74C4480015F1CE /* MainSearchIterator.swift in Sources */,
@@ -372,6 +403,7 @@
 				32D8A9742B74C2280015F1CE /* TabBarController.swift in Sources */,
 				32D8A9642B74BB010015F1CE /* MainPicturesAssembler.swift in Sources */,
 				32D8A96A2B74BB5F0015F1CE /* MainPicturesPresenter.swift in Sources */,
+				32D8A99C2B750DB20015F1CE /* CollectionDTO.swift in Sources */,
 				32D8A9952B74C47F0015F1CE /* MainSearchWorker.swift in Sources */,
 				32D8A98D2B74C4370015F1CE /* MainSearchViewController.swift in Sources */,
 			);
@@ -521,6 +553,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NASA Day Picture/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -553,6 +586,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "NASA Day Picture/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

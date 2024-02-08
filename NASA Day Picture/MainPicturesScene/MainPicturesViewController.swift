@@ -19,7 +19,6 @@ final class MainPicturesViewController: UIViewController {
 	var iterator: IMainPicturesIterator?
 
 	// MARK: - Private properties
-	private let labelTitle = UILabel()
 
 	// MARK: - Initializator
 	init() {
@@ -40,15 +39,14 @@ final class MainPicturesViewController: UIViewController {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		setupLayout()
+		get()
 	}
 }
 
 // - MARK: Add UIView in Controler
 private extension MainPicturesViewController {
 	/// Добавление элементов UIView в Controller.
-	func addUIView() {
-		view.addSubview(labelTitle)
-	}
+	func addUIView() { }
 }
 
 // - MARK: Initialisation configuration
@@ -56,9 +54,6 @@ private extension MainPicturesViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
 		view.backgroundColor = UIColor.green
-
-		// Настройка UILabel 'Название потока'
-		labelTitle.text = "Pictures scene."
 	}
 }
 
@@ -68,13 +63,18 @@ private extension MainPicturesViewController {
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
 		NSLayoutConstraint.activate([
-			labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			labelTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		])
 	}
 }
 
-// - MARK: ADD Protocol.
+// Action
+private extension MainPicturesViewController {
+	func get() {
+		iterator?.fetchData()
+	}
+}
+
+// - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: String) {
 		print("viewModel \(viewModel)")

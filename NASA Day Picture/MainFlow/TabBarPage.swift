@@ -7,15 +7,17 @@
 
 import UIKit
 
+/// Tab Bar
 enum TabBarPage {
 	case photos
 	case search
 
+	/// Выбор страницы.
 	var selectPage: Int {
 		guard let currentIndex = TabBarPage.allTabBarPage.firstIndex(of: self) else { return .zero}
 		return currentIndex
 	}
-
+	/// Название для Tab Bar.
 	func pageTitle() -> String {
 		var title = ""
 		switch self {
@@ -26,7 +28,7 @@ enum TabBarPage {
 		}
 		return title
 	}
-
+	/// Изображения для Tab Bar.
 	func pageImage() -> UIImage {
 		var name = ""
 		switch self {

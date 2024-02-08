@@ -9,7 +9,12 @@ import UIKit
 
 final class MainPicturesAssembler: IConfigurator {
 	func configurator() -> UIViewController {
-		let worker = MainPicturesWorker()
+		let networkManager = NetworkManager()
+		let decodeGSONManager = DecodeJsonManager()
+		let worker = MainPicturesWorker(
+			networkManager: networkManager,
+			decodeJSONManager: decodeGSONManager
+		)
 		let viewController = MainPicturesViewController()
 		let presenter = MainPicturesPresenter(viewController: viewController)
 		let iterator = MainPicturesIterator(presenter: presenter, worker: worker)

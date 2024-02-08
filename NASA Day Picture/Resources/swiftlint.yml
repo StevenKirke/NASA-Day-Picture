@@ -39,7 +39,7 @@ opt_in_rules:
 
 # путь к исходникам для проверки кода
 included:
-  - HotelBooking
+  - NASA Day Picture
 
 # подкаталоги, в которых линтер не будет делать проверку кода
 excluded:

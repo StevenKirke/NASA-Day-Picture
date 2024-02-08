@@ -35,7 +35,7 @@ final class AppCoordinator: BaseCoordinator {
 
 		navigationController.isNavigationBarHidden = true
 		navigationController.setViewControllers([tabBrController], animated: true)
-		
+
 		window?.rootViewController = navigationController
 		window?.makeKeyAndVisible()
 	}

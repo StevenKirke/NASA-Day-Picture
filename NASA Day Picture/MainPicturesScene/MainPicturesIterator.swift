@@ -8,6 +8,10 @@
 import Foundation
 
 protocol IMainPicturesIterator: AnyObject {
+	/**
+	 Запрос данных.
+	 - Warning: Поставлена задержка на 1 сек. Так как указано в ТЗ.
+	 */
 	func fetchData()
 }
 
@@ -26,6 +30,16 @@ final class MainPicturesIterator {
 
 extension MainPicturesIterator: IMainPicturesIterator {
 	func fetchData() {
-		self.presenter?.present()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			self.worker?.getData(entities: { resultDTO in
+				switch resultDTO {
+				case .success(let catalogDTO):
+					print("catalogDTO - \(catalogDTO)")
+				case .failure(let error):
+					print("Error - \(error)")
+				}
+			})
+		}
+		// self.presenter?.present()
 	}
 }

@@ -7,11 +7,18 @@
 
 import UIKit
 
+/// Настройки Tab Bar.
 final class TabBarController: UITabBarController {
+
 	// MARK: - Public methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupConfiguration()
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		changeHeightTabBar()
 	}
 }
 
@@ -27,20 +34,24 @@ private extension TabBarController {
 	func getTabController(page: TabBarPage) -> UINavigationController {
 		let navController = UINavigationController()
 		_ = navController.tabBarController?.tabBar
-
-		tabBar.frame.origin.y = 100
 		tabBar.isTranslucent = false
 		tabBar.backgroundColor = Theme.backgroundColor
 		tabBar.tintColor = Theme.mainColor
-		// tabBar.unselectedItemTintColor = Colors.light
-		tabBar.scalesLargeContentImage = true
 
 		navController.tabBarItem = UITabBarItem(
 			title: page.pageTitle(),
 			image: page.pageImage(),
 			tag: page.selectPage
 		)
-
 		return navController
+	}
+
+	/// Изменение высоты Tab Bar.
+	func changeHeightTabBar() {
+		let tabBarHeight: CGFloat = 100
+		var tabFrame = tabBar.frame
+		tabFrame.size.height = tabBarHeight
+		tabFrame.origin.y = view.frame.size.height - tabBarHeight
+		tabBar.frame = tabFrame
 	}
 }

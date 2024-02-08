@@ -19,7 +19,7 @@ final class MainSearchViewController: UIViewController {
 	var iterator: IMainSearchIterator?
 
 	// MARK: - Private properties
-	private let labelTitle = UILabel()
+	private lazy var labelTitle = UILabel()
 
 	// MARK: - Initializator
 	init() {
@@ -47,7 +47,8 @@ final class MainSearchViewController: UIViewController {
 private extension MainSearchViewController {
 	/// Добавление элементов UIView в Controller.
 	func addUIView() {
-		view.addSubview(labelTitle)
+		let views: [UIView] = [labelTitle]
+		views.forEach(view.addSubview)
 	}
 }
 
@@ -57,8 +58,10 @@ private extension MainSearchViewController {
 	func setupConfiguration() {
 		view.backgroundColor = UIColor.red
 
-		// Настройка UILabel 'Название потока'
-		labelTitle.text = "Search scene."
+		labelTitle.text = "Test"
+		labelTitle.layer.borderWidth = 1
+		labelTitle.layer.borderColor = UIColor.red.cgColor
+		labelTitle.translatesAutoresizingMaskIntoConstraints = false
 	}
 }
 

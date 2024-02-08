@@ -29,4 +29,3 @@ extension MainSearchIterator: IMainSearchIterator {
 		self.presenter?.present()
 	}
 }
-

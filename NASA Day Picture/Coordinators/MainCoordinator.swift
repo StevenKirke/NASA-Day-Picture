@@ -47,4 +47,3 @@ private extension MainCoordinator {
 		coordinator.start()
 	}
 }
-

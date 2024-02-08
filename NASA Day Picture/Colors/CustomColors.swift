@@ -49,4 +49,3 @@ extension UIColor: IAddColorAssets {
 		UIColor(named: name.patch)
 	}
 }
-
