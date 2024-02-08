@@ -110,7 +110,7 @@
 		32D8A93D2B74B7EE0015F1CE /* NASA Day Picture */ = {
 			isa = PBXGroup;
 			children = (
-				32D8A99D2B75114A0015F1CE /* Emums */,
+				32D8A99D2B75114A0015F1CE /* Enums */,
 				32D8A9752B74C24D0015F1CE /* Assets */,
 				32D8A97C2B74C2B40015F1CE /* Extension */,
 				32D8A9572B74B8450015F1CE /* Managers */,
@@ -275,12 +275,12 @@
 			name = Worker;
 			sourceTree = "<group>";
 		};
-		32D8A99D2B75114A0015F1CE /* Emums */ = {
+		32D8A99D2B75114A0015F1CE /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				32D8A99E2B7511580015F1CE /* URLS.swift */,
 			);
-			name = Emums;
+			name = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

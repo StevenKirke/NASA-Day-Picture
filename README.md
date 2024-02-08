@@ -26,6 +26,8 @@
 └── NASA Day Picture
     ├── README.md
     └── NASA Day Picture
+        ├── Enums
+        │   └── URLS.swift
         ├── Assets
         │   └── Colors
         │       ├── CustomColors.swift
@@ -33,6 +35,8 @@
         ├── Extensions
         │   └── ExtensionUIColor.swift
         ├── Managers
+        │       ├── DecodeJSONManager.swift
+        │       └── NetworkManager.swift
         ├── Services
         ├── Coordinators
         │   │── Common
@@ -53,7 +57,9 @@
         │   │       ├── MainPicturesIterator.swift
         │   │       ├── MainPicturesPresenter.swift
         │   │       ├── MainPicturesViewModel.swift
-        │   │       └── MainPicturesWorker.swift
+        │   │       └── Worker
+   	    │   │           ├── MainPicturesWorker.swift
+        │   │           └── CollectionDTO.swift
         │   └── SearchFlow
         │       └── MainSearchScene
         │           ├── MainSearchAssembler.swift
