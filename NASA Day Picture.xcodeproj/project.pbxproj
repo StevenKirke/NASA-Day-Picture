@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32D8A93F2B74B7EE0015F1CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A93E2B74B7EE0015F1CE /* AppDelegate.swift */; };
+		32D8A9412B74B7EE0015F1CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9402B74B7EE0015F1CE /* SceneDelegate.swift */; };
+		32D8A9482B74B7EF0015F1CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A9472B74B7EF0015F1CE /* Assets.xcassets */; };
+		32D8A94B2B74B7EF0015F1CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A9492B74B7EF0015F1CE /* LaunchScreen.storyboard */; };
+		32D8A9602B74BA5F0015F1CE /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */; };
+		32D8A9642B74BB010015F1CE /* MainPicturesAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9632B74BB010015F1CE /* MainPicturesAssembler.swift */; };
+		32D8A9662B74BB410015F1CE /* MainPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9652B74BB410015F1CE /* MainPicturesViewController.swift */; };
+		32D8A9682B74BB510015F1CE /* MainPicturesIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9672B74BB510015F1CE /* MainPicturesIterator.swift */; };
+		32D8A96A2B74BB5F0015F1CE /* MainPicturesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9692B74BB5F0015F1CE /* MainPicturesPresenter.swift */; };
+		32D8A96C2B74BB6C0015F1CE /* MainPicturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A96B2B74BB6C0015F1CE /* MainPicturesViewModel.swift */; };
+		32D8A96E2B74BB7A0015F1CE /* MainPicturesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A96D2B74BB7A0015F1CE /* MainPicturesWorker.swift */; };
+		32D8A9702B74BF900015F1CE /* IConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A96F2B74BF900015F1CE /* IConfigurator.swift */; };
+		32D8A9722B74BFDA0015F1CE /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9712B74BFDA0015F1CE /* TabBarPage.swift */; };
+		32D8A9742B74C2280015F1CE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9732B74C2280015F1CE /* TabBarController.swift */; };
+		32D8A9782B74C26C0015F1CE /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9772B74C26C0015F1CE /* CustomColors.swift */; };
+		32D8A97B2B74C2930015F1CE /* StyleColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A97A2B74C2930015F1CE /* StyleColors.swift */; };
+		32D8A97E2B74C2C90015F1CE /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A97D2B74C2C90015F1CE /* Extension+UIColor.swift */; };
+		32D8A9812B74C30D0015F1CE /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9802B74C30D0015F1CE /* ICoordinator.swift */; };
+		32D8A9832B74C3320015F1CE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9822B74C3320015F1CE /* AppCoordinator.swift */; };
+		32D8A9852B74C3560015F1CE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9842B74C3560015F1CE /* MainCoordinator.swift */; };
+		32D8A9872B74C36D0015F1CE /* MainPicturesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9862B74C36D0015F1CE /* MainPicturesCoordinator.swift */; };
+		32D8A9892B74C3800015F1CE /* MainSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9882B74C3800015F1CE /* MainSearchCoordinator.swift */; };
+		32D8A98B2B74C41F0015F1CE /* MainSearchAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A98A2B74C41F0015F1CE /* MainSearchAssembler.swift */; };
+		32D8A98D2B74C4370015F1CE /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A98C2B74C4370015F1CE /* MainSearchViewController.swift */; };
+		32D8A98F2B74C4480015F1CE /* MainSearchIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A98E2B74C4480015F1CE /* MainSearchIterator.swift */; };
+		32D8A9912B74C4580015F1CE /* MainSearchPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9902B74C4580015F1CE /* MainSearchPresentor.swift */; };
+		32D8A9932B74C46E0015F1CE /* MainSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9922B74C46E0015F1CE /* MainSearchViewModel.swift */; };
+		32D8A9952B74C47F0015F1CE /* MainSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9942B74C47F0015F1CE /* MainSearchWorker.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA Day Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32D8A93E2B74B7EE0015F1CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		32D8A9402B74B7EE0015F1CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		32D8A9472B74B7EF0015F1CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		32D8A94A2B74B7EF0015F1CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		32D8A94C2B74B7EF0015F1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
+		32D8A9622B74BAD10015F1CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		32D8A9632B74BB010015F1CE /* MainPicturesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesAssembler.swift; sourceTree = "<group>"; };
+		32D8A9652B74BB410015F1CE /* MainPicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesViewController.swift; sourceTree = "<group>"; };
+		32D8A9672B74BB510015F1CE /* MainPicturesIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesIterator.swift; sourceTree = "<group>"; };
+		32D8A9692B74BB5F0015F1CE /* MainPicturesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesPresenter.swift; sourceTree = "<group>"; };
+		32D8A96B2B74BB6C0015F1CE /* MainPicturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesViewModel.swift; sourceTree = "<group>"; };
+		32D8A96D2B74BB7A0015F1CE /* MainPicturesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesWorker.swift; sourceTree = "<group>"; };
+		32D8A96F2B74BF900015F1CE /* IConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IConfigurator.swift; sourceTree = "<group>"; };
+		32D8A9712B74BFDA0015F1CE /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
+		32D8A9732B74C2280015F1CE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		32D8A9772B74C26C0015F1CE /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		32D8A97A2B74C2930015F1CE /* StyleColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleColors.swift; sourceTree = "<group>"; };
+		32D8A97D2B74C2C90015F1CE /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		32D8A9802B74C30D0015F1CE /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		32D8A9822B74C3320015F1CE /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		32D8A9842B74C3560015F1CE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		32D8A9862B74C36D0015F1CE /* MainPicturesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesCoordinator.swift; sourceTree = "<group>"; };
+		32D8A9882B74C3800015F1CE /* MainSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchCoordinator.swift; sourceTree = "<group>"; };
+		32D8A98A2B74C41F0015F1CE /* MainSearchAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchAssembler.swift; sourceTree = "<group>"; };
+		32D8A98C2B74C4370015F1CE /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
+		32D8A98E2B74C4480015F1CE /* MainSearchIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchIterator.swift; sourceTree = "<group>"; };
+		32D8A9902B74C4580015F1CE /* MainSearchPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchPresentor.swift; sourceTree = "<group>"; };
+		32D8A9922B74C46E0015F1CE /* MainSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewModel.swift; sourceTree = "<group>"; };
+		32D8A9942B74C47F0015F1CE /* MainSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchWorker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32D8A9382B74B7EE0015F1CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32D8A9322B74B7EE0015F1CE = {
+			isa = PBXGroup;
+			children = (
+				32D8A9622B74BAD10015F1CE /* README.md */,
+				32D8A93D2B74B7EE0015F1CE /* NASA Day Picture */,
+				32D8A93C2B74B7EE0015F1CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32D8A93C2B74B7EE0015F1CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32D8A93D2B74B7EE0015F1CE /* NASA Day Picture */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9752B74C24D0015F1CE /* Assets */,
+				32D8A97C2B74C2B40015F1CE /* Extension */,
+				32D8A9572B74B8450015F1CE /* Managers */,
+				32D8A9562B74B83D0015F1CE /* Services */,
+				32D8A9552B74B82E0015F1CE /* Coordinators */,
+				32D8A9542B74B8230015F1CE /* Flows */,
+				32D8A9532B74B8110015F1CE /* Resources */,
+				32D8A95C2B74B9B20015F1CE /* Application */,
+			);
+			path = "NASA Day Picture";
+			sourceTree = "<group>";
+		};
+		32D8A9532B74B8110015F1CE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */,
+				32D8A94C2B74B7EF0015F1CE /* Info.plist */,
+				32D8A9472B74B7EF0015F1CE /* Assets.xcassets */,
+				32D8A9492B74B7EF0015F1CE /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32D8A9542B74B8230015F1CE /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9582B74B86E0015F1CE /* MainFlow */,
+				32D8A9592B74B89F0015F1CE /* PictureFlow */,
+				32D8A95A2B74B8B40015F1CE /* SearchFlow */,
+			);
+			name = Flows;
+			sourceTree = "<group>";
+		};
+		32D8A9552B74B82E0015F1CE /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A97F2B74C2EB0015F1CE /* Common */,
+				32D8A9822B74C3320015F1CE /* AppCoordinator.swift */,
+				32D8A9842B74C3560015F1CE /* MainCoordinator.swift */,
+				32D8A9862B74C36D0015F1CE /* MainPicturesCoordinator.swift */,
+				32D8A9882B74C3800015F1CE /* MainSearchCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		32D8A9562B74B83D0015F1CE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		32D8A9572B74B8450015F1CE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		32D8A9582B74B86E0015F1CE /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9712B74BFDA0015F1CE /* TabBarPage.swift */,
+				32D8A9732B74C2280015F1CE /* TabBarController.swift */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		32D8A9592B74B89F0015F1CE /* PictureFlow */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A96F2B74BF900015F1CE /* IConfigurator.swift */,
+				32D8A95D2B74B9E30015F1CE /* MainPicturesScene */,
+			);
+			name = PictureFlow;
+			sourceTree = "<group>";
+		};
+		32D8A95A2B74B8B40015F1CE /* SearchFlow */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A95E2B74B9F30015F1CE /* MainSearchScene */,
+			);
+			name = SearchFlow;
+			sourceTree = "<group>";
+		};
+		32D8A95C2B74B9B20015F1CE /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A93E2B74B7EE0015F1CE /* AppDelegate.swift */,
+				32D8A9402B74B7EE0015F1CE /* SceneDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		32D8A95D2B74B9E30015F1CE /* MainPicturesScene */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9632B74BB010015F1CE /* MainPicturesAssembler.swift */,
+				32D8A9652B74BB410015F1CE /* MainPicturesViewController.swift */,
+				32D8A9672B74BB510015F1CE /* MainPicturesIterator.swift */,
+				32D8A9692B74BB5F0015F1CE /* MainPicturesPresenter.swift */,
+				32D8A96B2B74BB6C0015F1CE /* MainPicturesViewModel.swift */,
+				32D8A96D2B74BB7A0015F1CE /* MainPicturesWorker.swift */,
+			);
+			path = MainPicturesScene;
+			sourceTree = "<group>";
+		};
+		32D8A95E2B74B9F30015F1CE /* MainSearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A98A2B74C41F0015F1CE /* MainSearchAssembler.swift */,
+				32D8A98C2B74C4370015F1CE /* MainSearchViewController.swift */,
+				32D8A98E2B74C4480015F1CE /* MainSearchIterator.swift */,
+				32D8A9902B74C4580015F1CE /* MainSearchPresentor.swift */,
+				32D8A9922B74C46E0015F1CE /* MainSearchViewModel.swift */,
+				32D8A9942B74C47F0015F1CE /* MainSearchWorker.swift */,
+			);
+			path = MainSearchScene;
+			sourceTree = "<group>";
+		};
+		32D8A9752B74C24D0015F1CE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9762B74C2570015F1CE /* Colors */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		32D8A9762B74C2570015F1CE /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9772B74C26C0015F1CE /* CustomColors.swift */,
+				32D8A97A2B74C2930015F1CE /* StyleColors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		32D8A97C2B74C2B40015F1CE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A97D2B74C2C90015F1CE /* Extension+UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		32D8A97F2B74C2EB0015F1CE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				32D8A9802B74C30D0015F1CE /* ICoordinator.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32D8A93A2B74B7EE0015F1CE /* NASA Day Picture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32D8A94F2B74B7EF0015F1CE /* Build configuration list for PBXNativeTarget "NASA Day Picture" */;
+			buildPhases = (
+				32D8A9372B74B7EE0015F1CE /* Sources */,
+				32D8A9382B74B7EE0015F1CE /* Frameworks */,
+				32D8A9392B74B7EE0015F1CE /* Resources */,
+				32D8A9612B74BA6E0015F1CE /* Run SwiftLint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NASA Day Picture";
+			productName = "NASA Day Picture";
+			productReference = 32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32D8A9332B74B7EE0015F1CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					32D8A93A2B74B7EE0015F1CE = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 32D8A9362B74B7EE0015F1CE /* Build configuration list for PBXProject "NASA Day Picture" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 32D8A9322B74B7EE0015F1CE;
+			productRefGroup = 32D8A93C2B74B7EE0015F1CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32D8A93A2B74B7EE0015F1CE /* NASA Day Picture */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32D8A9392B74B7EE0015F1CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D8A94B2B74B7EF0015F1CE /* LaunchScreen.storyboard in Resources */,
+				32D8A9602B74BA5F0015F1CE /* swiftlint.yml in Resources */,
+				32D8A9482B74B7EF0015F1CE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32D8A9612B74BA6E0015F1CE /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32D8A9372B74B7EE0015F1CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D8A9782B74C26C0015F1CE /* CustomColors.swift in Sources */,
+				32D8A9832B74C3320015F1CE /* AppCoordinator.swift in Sources */,
+				32D8A93F2B74B7EE0015F1CE /* AppDelegate.swift in Sources */,
+				32D8A9662B74BB410015F1CE /* MainPicturesViewController.swift in Sources */,
+				32D8A9892B74C3800015F1CE /* MainSearchCoordinator.swift in Sources */,
+				32D8A9412B74B7EE0015F1CE /* SceneDelegate.swift in Sources */,
+				32D8A96E2B74BB7A0015F1CE /* MainPicturesWorker.swift in Sources */,
+				32D8A9872B74C36D0015F1CE /* MainPicturesCoordinator.swift in Sources */,
+				32D8A98B2B74C41F0015F1CE /* MainSearchAssembler.swift in Sources */,
+				32D8A9852B74C3560015F1CE /* MainCoordinator.swift in Sources */,
+				32D8A9682B74BB510015F1CE /* MainPicturesIterator.swift in Sources */,
+				32D8A97B2B74C2930015F1CE /* StyleColors.swift in Sources */,
+				32D8A9702B74BF900015F1CE /* IConfigurator.swift in Sources */,
+				32D8A96C2B74BB6C0015F1CE /* MainPicturesViewModel.swift in Sources */,
+				32D8A9932B74C46E0015F1CE /* MainSearchViewModel.swift in Sources */,
+				32D8A98F2B74C4480015F1CE /* MainSearchIterator.swift in Sources */,
+				32D8A9812B74C30D0015F1CE /* ICoordinator.swift in Sources */,
+				32D8A9912B74C4580015F1CE /* MainSearchPresentor.swift in Sources */,
+				32D8A9722B74BFDA0015F1CE /* TabBarPage.swift in Sources */,
+				32D8A97E2B74C2C90015F1CE /* Extension+UIColor.swift in Sources */,
+				32D8A9742B74C2280015F1CE /* TabBarController.swift in Sources */,
+				32D8A9642B74BB010015F1CE /* MainPicturesAssembler.swift in Sources */,
+				32D8A96A2B74BB5F0015F1CE /* MainPicturesPresenter.swift in Sources */,
+				32D8A9952B74C47F0015F1CE /* MainSearchWorker.swift in Sources */,
+				32D8A98D2B74C4370015F1CE /* MainSearchViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		32D8A9492B74B7EF0015F1CE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32D8A94A2B74B7EF0015F1CE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32D8A94D2B74B7EF0015F1CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		32D8A94E2B74B7EF0015F1CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32D8A9502B74B7EF0015F1CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P87Y98S683;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NASA Day Picture/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "SFX-Montage.NASA-Day-Picture";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		32D8A9512B74B7EF0015F1CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P87Y98S683;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NASA Day Picture/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "SFX-Montage.NASA-Day-Picture";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32D8A9362B74B7EE0015F1CE /* Build configuration list for PBXProject "NASA Day Picture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32D8A94D2B74B7EF0015F1CE /* Debug */,
+				32D8A94E2B74B7EF0015F1CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32D8A94F2B74B7EF0015F1CE /* Build configuration list for PBXNativeTarget "NASA Day Picture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32D8A9502B74B7EF0015F1CE /* Debug */,
+				32D8A9512B74B7EF0015F1CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32D8A9332B74B7EE0015F1CE /* Project object */;
+}
