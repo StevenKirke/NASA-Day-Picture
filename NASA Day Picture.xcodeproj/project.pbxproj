@@ -40,8 +40,9 @@
 		32D8A99C2B750DB20015F1CE /* CollectionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A99B2B750DB20015F1CE /* CollectionDTO.swift */; };
 		32D8A99F2B7511580015F1CE /* URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A99E2B7511580015F1CE /* URLS.swift */; };
 		32D8A9A12B7558410015F1CE /* ConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9A02B7558410015F1CE /* ConverterService.swift */; };
-		32D8A9A72B76897C0015F1CE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9A62B76897C0015F1CE /* SnapKit */; };
-		32D8A9A92B76897C0015F1CE /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9A82B76897C0015F1CE /* SnapKit-Dynamic */; };
+		32D8A9AD2B7696CA0015F1CE /* Packages in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A9AC2B7696CA0015F1CE /* Packages */; };
+		32D8A9B02B769BE10015F1CE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9AF2B769BE10015F1CE /* SnapKit */; };
+		32D8A9B22B769BE10015F1CE /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +52,7 @@
 		32D8A9472B74B7EF0015F1CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32D8A94A2B74B7EF0015F1CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32D8A94C2B74B7EF0015F1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
+		32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftlint.yml; path = "NASA Day Picture/swiftlint.yml"; sourceTree = "<group>"; };
 		32D8A9622B74BAD10015F1CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32D8A9632B74BB010015F1CE /* MainPicturesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesAssembler.swift; sourceTree = "<group>"; };
 		32D8A9652B74BB410015F1CE /* MainPicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPicturesViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		32D8A99B2B750DB20015F1CE /* CollectionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDTO.swift; sourceTree = "<group>"; };
 		32D8A99E2B7511580015F1CE /* URLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLS.swift; sourceTree = "<group>"; };
 		32D8A9A02B7558410015F1CE /* ConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterService.swift; sourceTree = "<group>"; };
+		32D8A9AC2B7696CA0015F1CE /* Packages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Packages; path = "NASA Day Picture/Packages"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32D8A9A72B76897C0015F1CE /* SnapKit in Frameworks */,
-				32D8A9A92B76897C0015F1CE /* SnapKit-Dynamic in Frameworks */,
+				32D8A9B02B769BE10015F1CE /* SnapKit in Frameworks */,
+				32D8A9B22B769BE10015F1CE /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +101,9 @@
 		32D8A9322B74B7EE0015F1CE = {
 			isa = PBXGroup;
 			children = (
+				32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */,
 				32D8A9622B74BAD10015F1CE /* README.md */,
+				32D8A9AC2B7696CA0015F1CE /* Packages */,
 				32D8A93D2B74B7EE0015F1CE /* NASA Day Picture */,
 				32D8A93C2B74B7EE0015F1CE /* Products */,
 			);
@@ -132,7 +136,6 @@
 		32D8A9532B74B8110015F1CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				32D8A95F2B74BA5F0015F1CE /* swiftlint.yml */,
 				32D8A94C2B74B7EF0015F1CE /* Info.plist */,
 				32D8A9472B74B7EF0015F1CE /* Assets.xcassets */,
 				32D8A9492B74B7EF0015F1CE /* LaunchScreen.storyboard */,
@@ -316,8 +319,8 @@
 			);
 			name = "NASA Day Picture";
 			packageProductDependencies = (
-				32D8A9A62B76897C0015F1CE /* SnapKit */,
-				32D8A9A82B76897C0015F1CE /* SnapKit-Dynamic */,
+				32D8A9AF2B769BE10015F1CE /* SnapKit */,
+				32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */,
 			);
 			productName = "NASA Day Picture";
 			productReference = 32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */;
@@ -348,7 +351,7 @@
 			);
 			mainGroup = 32D8A9322B74B7EE0015F1CE;
 			packageReferences = (
-				32D8A9A52B76897C0015F1CE /* XCLocalSwiftPackageReference "../SnapKit-develop" */,
+				32D8A9AE2B769BE10015F1CE /* XCLocalSwiftPackageReference "NASA Day Picture/Packages/SnapKit-develop" */,
 			);
 			productRefGroup = 32D8A93C2B74B7EE0015F1CE /* Products */;
 			projectDirPath = "";
@@ -367,6 +370,7 @@
 				32D8A94B2B74B7EF0015F1CE /* LaunchScreen.storyboard in Resources */,
 				32D8A9602B74BA5F0015F1CE /* swiftlint.yml in Resources */,
 				32D8A9482B74B7EF0015F1CE /* Assets.xcassets in Resources */,
+				32D8A9AD2B7696CA0015F1CE /* Packages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +394,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -655,18 +659,18 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		32D8A9A52B76897C0015F1CE /* XCLocalSwiftPackageReference "../SnapKit-develop" */ = {
+		32D8A9AE2B769BE10015F1CE /* XCLocalSwiftPackageReference "NASA Day Picture/Packages/SnapKit-develop" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../SnapKit-develop";
+			relativePath = "NASA Day Picture/Packages/SnapKit-develop";
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		32D8A9A62B76897C0015F1CE /* SnapKit */ = {
+		32D8A9AF2B769BE10015F1CE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SnapKit;
 		};
-		32D8A9A82B76897C0015F1CE /* SnapKit-Dynamic */ = {
+		32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "SnapKit-Dynamic";
 		};

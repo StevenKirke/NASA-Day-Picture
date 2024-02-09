@@ -45,6 +45,9 @@ included:
 excluded:
   - Carthage
   - Pods
+  -  ./*/*Core
+  - ./*Packages
+  - SwiftLint/Packages/
 
 # список правил для анализа `swiftlint analyze` (experimental)
 analyzer_rules:

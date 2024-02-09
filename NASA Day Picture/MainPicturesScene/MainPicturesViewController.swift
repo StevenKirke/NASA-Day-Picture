@@ -61,6 +61,7 @@ private extension MainPicturesViewController {
 		view.backgroundColor = UIColor.green
 		labelTest.text = "THis is label text"
 		labelTest.layer.borderWidth = 1
+		labelTest.textAlignment = .center
 	}
 }
 
@@ -68,10 +69,13 @@ private extension MainPicturesViewController {
 private extension MainPicturesViewController {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
+
 	func setupLayout() {
-		labelTest.snp.makeConstraints { (make) in
-			print("1")
-			make.width.height.equalTo(200)
+		labelTest.snp.makeConstraints { make in
+			make.left.equalToSuperview().inset(20)
+			make.right.equalToSuperview().inset(20)
+			make.top.equalToSuperview().inset(20)
+			make.bottom.equalToSuperview().inset(20)
 		}
 	}
 }
