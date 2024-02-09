@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol IMainPicturesViewViewLogic: AnyObject {
-	func render(viewModel: String)
+	func render(viewModel: CollectionsModel)
  }
 
 final class MainPicturesViewController: UIViewController {
@@ -19,6 +20,7 @@ final class MainPicturesViewController: UIViewController {
 	var iterator: IMainPicturesIterator?
 
 	// MARK: - Private properties
+	let labelTest = UILabel()
 
 	// MARK: - Initializator
 	init() {
@@ -46,7 +48,10 @@ final class MainPicturesViewController: UIViewController {
 // - MARK: Add UIView in Controler
 private extension MainPicturesViewController {
 	/// Добавление элементов UIView в Controller.
-	func addUIView() { }
+	func addUIView() {
+		let views: [UIView] = [labelTest]
+		views.forEach(view.addSubview)
+	}
 }
 
 // - MARK: Initialisation configuration
@@ -54,6 +59,8 @@ private extension MainPicturesViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
 		view.backgroundColor = UIColor.green
+		labelTest.text = "THis is label text"
+		labelTest.layer.borderWidth = 1
 	}
 }
 
@@ -62,8 +69,10 @@ private extension MainPicturesViewController {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
-		NSLayoutConstraint.activate([
-		])
+		labelTest.snp.makeConstraints { (make) in
+			print("1")
+			make.width.height.equalTo(200)
+		}
 	}
 }
 
@@ -76,7 +85,7 @@ private extension MainPicturesViewController {
 
 // - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
-	func render(viewModel: String) {
-		print("viewModel \(viewModel)")
+	func render(viewModel: CollectionsModel) {
+		print("viewModel")
 	}
 }

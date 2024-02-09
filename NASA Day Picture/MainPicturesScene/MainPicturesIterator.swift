@@ -30,16 +30,15 @@ final class MainPicturesIterator {
 
 extension MainPicturesIterator: IMainPicturesIterator {
 	func fetchData() {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			self.worker?.getData(entities: { resultDTO in
-				switch resultDTO {
-				case .success(let catalogDTO):
-					print("catalogDTO - \(catalogDTO)")
+		DispatchQueue.main.async {
+			self.worker?.getRequestData { response in
+				switch response {
+				case .success(let model):
+					self.presenter?.present(resultResponse: .success(model))
 				case .failure(let error):
-					print("Error - \(error)")
+					self.presenter?.present(resultResponse: .failure(error))
 				}
-			})
+			}
 		}
-		// self.presenter?.present()
 	}
 }

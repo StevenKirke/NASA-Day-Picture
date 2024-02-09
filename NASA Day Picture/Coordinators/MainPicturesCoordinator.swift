@@ -7,7 +7,22 @@
 
 import UIKit
 
-final class MainPicturesCoordinator: ICoordinator {
+/// Обработка действий в Presenter, переход на следующий экран и показ ошибки в модальном окне.
+protocol IMainPictureDelegate: AnyObject {
+
+	/// Запуск экрана описание c картинками.
+	func showMainPicturesScene()
+	/// Запуск экрана описание новости.
+	func showPictureDescriptionScene()
+	/**
+	 Запуск экрана предупреждения, UIAlert.
+	 - Parameters:
+			- massage: Описание ошибки.
+	 */
+	func showAlertScene(massage: String)
+}
+
+final class MainPicturesCoordinator: ICoordinator, IMainPictureDelegate {
 
 	// MARK: - Public properties
 	var childCoordinators: [ICoordinator] = []
@@ -25,10 +40,27 @@ final class MainPicturesCoordinator: ICoordinator {
 		showMainPicturesScene()
 	}
 
-	// MARK: - Private methods
-	private func showMainPicturesScene() {
+	func showMainPicturesScene() {
 		let assembler = MainPicturesAssembler()
-		let viewController = assembler.configurator()
+		let viewController = assembler.configurator(delegate: self)
 		navigationController.pushViewController(viewController, animated: true)
+	}
+
+	func showPictureDescriptionScene() {
+		print("Next view!")
+	}
+	func showAlertScene(massage: String) {
+		let alertView = createAlert(massage: massage)
+		navigationController.present(alertView, animated: true)
+	}
+
+	// MARK: - Private methods
+}
+
+private extension MainPicturesCoordinator {
+	func createAlert(massage: String) -> UIAlertController {
+		let alertVC = UIAlertController(title: "Ошибка", message: massage, preferredStyle: .alert)
+		alertVC.addAction(UIAlertAction(title: "ОК", style: .default, handler: nil))
+		return alertVC
 	}
 }

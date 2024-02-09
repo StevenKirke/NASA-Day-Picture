@@ -48,23 +48,17 @@ final class NetworkManager: INetworkManager {
 			returnModel(.failure(.errorConvertURL))
 			return
 		}
-
 		let request = URLRequest(url: url)
 
-		let dataTask = task.dataTask(with: request) { data, response, error in
+		let dataTask = task.dataTask(with: request) { data, _, error in
 			DispatchQueue.main.async {
 				if let currentError = error {
 					returnModel(.failure(.errorRequest(currentError.localizedDescription)))
 				}
-				if let currentResponse = response as? HTTPURLResponse, (200...299).contains(currentResponse.statusCode) {
-					returnModel(.failure(.errorResponse))
-				}
-
 				guard let currentData = data else {
 					returnModel(.failure(.errorEmptyData))
 					return
 				}
-
 				returnModel(.success(currentData))
 			}
 		}

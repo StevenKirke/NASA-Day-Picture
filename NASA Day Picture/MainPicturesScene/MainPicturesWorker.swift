@@ -11,7 +11,7 @@ typealias CatalogDTO = Result<CollectionDTO, Error>
 
 protocol IMainPicturesWorker: AnyObject {
 	/// Получение данных, сеть, моск, файловая система.
-	func getData(entities: @escaping (CatalogDTO) -> Void)
+	func getRequestData(response: @escaping (Result<[CollectionRequest], Error>) -> Void)
 }
 
 final class MainPicturesWorker: IMainPicturesWorker {
@@ -19,25 +19,48 @@ final class MainPicturesWorker: IMainPicturesWorker {
 	// MARK: - Dependencies
 	var networkManager: INetworkManager?
 	var decodeJSONManager: IDecodeJsonManager?
+	var converterService: IConvertService?
 
 	// MARK: - Initializator
 	internal init(
 		networkManager: INetworkManager?,
-		decodeJSONManager: IDecodeJsonManager?
+		decodeJSONManager: IDecodeJsonManager?,
+		converterService: IConvertService?
 
 	) {
 		self.networkManager = networkManager
 		self.decodeJSONManager = decodeJSONManager
+		self.converterService = converterService
 	}
 
-	func getData(entities: @escaping (CatalogDTO) -> Void) {
+	func getRequestData(response: @escaping (Result<[CollectionRequest], Error>) -> Void) {
 		let urlString = URLS.allPictures(1)
 		networkManager?.getData(url: urlString.assembly) { result in
 			switch result {
 			case .success(let data):
-				print("Data \(data)")
+			self.decode(data: data) { resultDecode in
+				switch resultDecode {
+				case .success(let json):
+					if let convert =  self.converterService?.convert(entity: json) {
+						response(.success(convert))
+					}
+				case .failure(let error):
+					response(.failure(error))
+				}
+			}
 			case .failure(let error):
-				print("Error - \(error)")
+				response(.failure(error))
+			}
+		}
+	}
+
+	private func decode(data: Data, responseJSON: @escaping (Result<CollectionDTO, DecodeError>) -> Void ) {
+		decodeJSONManager?.decodeJSON(data: data, model: CollectionDTO.self) { result in
+			switch result {
+			case .success(let json):
+				responseJSON(.success(json))
+			case .failure(let error):
+				responseJSON(.failure(error))
 			}
 		}
 	}

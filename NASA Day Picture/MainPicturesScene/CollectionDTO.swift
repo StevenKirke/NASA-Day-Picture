@@ -9,12 +9,12 @@ import Foundation
 
 // MARK: - CollectionDTO
 // swiftlint:disable all
-struct CollectionDTO: Codable {
+struct CollectionDTO: Decodable {
 	let collection: CollectionClass
 }
 
 // MARK: - CollectionClass
-struct CollectionClass: Codable {
+struct CollectionClass: Decodable {
 	let version: String
 	let href: String
 	let items: [Item]
@@ -23,7 +23,7 @@ struct CollectionClass: Codable {
 }
 
 // MARK: - Item
-struct Item: Codable {
+struct Item: Decodable {
 	let href: String
 	let data: [Datum]
 	let links: [ItemLink]?
@@ -32,8 +32,9 @@ struct Item: Codable {
 // MARK: - Datum
 struct Datum: Codable {
 	let center: Center
-	let title, nasaID: String
-	let dateCreated: Date
+	let title: String
+	let nasaID: String
+	let dateCreated: String?
 	let keywords: [String]
 	let mediaType: MediaType
 	let description508, secondaryCreator, description, photographer: String?
@@ -41,7 +42,8 @@ struct Datum: Codable {
 	let album: [String]?
 
 	enum CodingKeys: String, CodingKey {
-		case center, title
+		case center
+		case title
 		case nasaID = "nasa_id"
 		case dateCreated = "date_created"
 		case keywords
