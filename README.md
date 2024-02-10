@@ -42,6 +42,7 @@
         │       ├── DecodeJSONManager.swift
         │       └── NetworkManager.swift
         ├── Services
+        │       └── ConverterService.swift
         ├── Coordinators
         │   │── Common
         │   │   └── ICoordinator.swift
@@ -55,31 +56,41 @@
         │   │   ├── TabBarController.swift
         │   │   └── TabBarPage.swift
         │   ├── PictureFlow
-        │   │   └── MainPicturesScene
-        │   │       ├── MainPicturesAssembler.swift
-        │   │       ├── MainPicturesViewController.swift
-        │   │       ├── MainPicturesIterator.swift
-        │   │       ├── MainPicturesPresenter.swift
-        │   │       ├── MainPicturesViewModel.swift
-        │   │       ├── PicturesCollectionView
-        │   │       │   └── CellForCollectionPictures.swift
-        │   │       └── Worker
-        │   │           ├── MainPicturesWorker.swift
-        │   │           └── CollectionDTO.swift
+        │   │   ├── MainPicturesScene
+       	│   │   │   ├── MainPicturesAssembler.swift
+        │   │   │   ├── MainPicturesViewController.swift
+        │   │   │   ├── MainPicturesIterator.swift
+        │   │   │   ├── MainPicturesPresenter.swift
+        │   │   │   ├── MainPicturesViewModel.swift
+        │   │   │   ├── AdditionalView
+        │   │   │   │   └── CellForCollectionPictures.swift
+        │   │   │   └── Worker
+        │   │   │       ├── MainPicturesWorker.swift
+        │   │   │       └── CollectionDTO.swift
+        │   │   └── DescriptionPicureScene
+       	│   │       ├── DescriptionPictureAssembler.swift
+        │   │       ├── DescriptionPictureViewController.swift
+        │   │       ├── DescriptionPictureIterator.swift
+        │   │       ├── DescriptionPicturePresenter.swift
+        │   │       ├── DescriptionPictureViewModel.swift
+        │   │       └── AdditionalView
+        │   │           │── HeaderForPictureView.swift
+        │   │           │── CellHeaderView.swift
+        │   │           └── FooterForPicturesView.swift
         │   └── SearchFlow
         │       └── MainSearchScene
-        │           ├── MainSearchAssembler.swift
-        │           ├── MainSearchViewController.swift
-        │           ├── MainSearchIterator.swift
-        │           ├── MainSearchPresenter.swift
-        │           ├── MainSearchModel.swift
-        │           └── MainSearchWorker.swift
+        │               ├── MainSearchAssembler.swift
+        │               ├── MainSearchViewController.swift
+        │               ├── MainSearchIterator.swift
+        │               ├── MainSearchPresenter.swift
+        │               ├── MainSearchModel.swift
+        │               └── MainSearchWorker.swift
         ├── Application
         │   ├── AppDelegate.swift
         │   └── SceneDelegate.swift
         └── Resources
             │   └── Fonds
-            │       └── CeraRoundProMedium
+            │          └── CeraRoundProMedium
             ├── LaunchScreen.storyboard
             ├── Assets.xcassets
             └── Info.plist
