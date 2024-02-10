@@ -38,6 +38,7 @@ final class MainPicturesCoordinator: ICoordinator, IMainPictureDelegate {
 	// MARK: - Public methods
 	func start() {
 		showMainPicturesScene()
+		// showPictureDescriptionScene()
 	}
 
 	func showMainPicturesScene() {
@@ -47,8 +48,11 @@ final class MainPicturesCoordinator: ICoordinator, IMainPictureDelegate {
 	}
 
 	func showPictureDescriptionScene() {
-		print("Next view!")
+		let assembler = DescriptionPictureAssembler()
+		let viewController = assembler.configurator()
+		navigationController.pushViewController(viewController, animated: true)
 	}
+
 	func showAlertScene(massage: String) {
 		let alertView = createAlert(massage: massage)
 		navigationController.present(alertView, animated: true)

@@ -10,6 +10,8 @@ import Foundation
 protocol IMainPicturesPresenter: AnyObject {
 	/// Метод открывающий ContactListViewController.
 	func present(resultResponse: MainPicturesModel.Request)
+
+	func presentDescriptionScene()
 }
 
 final class MainPicturesPresenter {
@@ -41,5 +43,9 @@ extension MainPicturesPresenter: IMainPicturesPresenter {
 		case .failure(let error):
 			mainPictureDelegate?.showAlertScene(massage: error.localizedDescription)
 		}
+	}
+
+	func presentDescriptionScene() {
+		mainPictureDelegate?.showPictureDescriptionScene()
 	}
 }

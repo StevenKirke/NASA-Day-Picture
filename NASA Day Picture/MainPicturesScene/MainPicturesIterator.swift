@@ -13,6 +13,8 @@ protocol IMainPicturesIterator: AnyObject {
 	 - Warning: Поставлена задержка на 1 сек. Так как указано в ТЗ.
 	 */
 	func fetchData(downloadNumber: Int)
+
+	func showDescriptionScene()
 }
 
 final class MainPicturesIterator {
@@ -40,5 +42,9 @@ extension MainPicturesIterator: IMainPicturesIterator {
 				}
 			}
 		}
+	}
+
+	func showDescriptionScene() {
+		presenter?.presentDescriptionScene()
 	}
 }
