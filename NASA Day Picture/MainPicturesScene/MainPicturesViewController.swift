@@ -156,7 +156,6 @@ extension MainPicturesViewController: UICollectionViewDelegateFlowLayout {
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: CollectionsModel) {
 		self.modelForDisplay.append(contentsOf: viewModel.cards)
-		print(self.modelForDisplay.count)
 		collectionViewPicture.reloadData()
 		stopLoad()
 	}
@@ -169,8 +168,7 @@ private extension MainPicturesViewController {
 	 Если на текущий момент идет загрузка данных, то запрос к сети не осуществляется.
 	 */
 	func answerLoadData() {
-		print(countPage)
-		if !isLoadData {
+		if !isLoadData && countPage <= 10 {
 			getNetwork()
 			startLoad()
 		}

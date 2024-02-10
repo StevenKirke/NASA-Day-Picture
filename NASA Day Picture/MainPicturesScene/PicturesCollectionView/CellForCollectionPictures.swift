@@ -37,16 +37,11 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	func upLoadImage(imageURL: URL?) {
 		self.indicatorView.startAnimating()
 		guard let currentURL = imageURL else { return }
-		self.loadImage(url: currentURL) { image in
-			DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-				self.indicatorView.stopAnimating()
-				self.indicatorView.isHidden = true
-				self.imageBackground.image = image
-			}
+		self.loadImage(url: currentURL) {
+			self.indicatorView.stopAnimating()
+			self.indicatorView.isHidden = true
 		}
 	}
-	// MARK: - Private methods
-
 }
 
 // - MARK: Add UIView in Controler
@@ -129,15 +124,30 @@ private extension CellForCollectionPictures {
 }
 
 extension CellForCollectionPictures {
-	func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) {
-		URLSession.shared.dataTask(with: url) { data, _, _ in
-			var image = UIImage(named: "Images/perseveranceRover")
-			if let data = data {
-				image = UIImage(data: data)
+	func loadImage(url: URL, completion: @escaping (() -> Void)) {
+
+		let writeURL = url.absoluteString
+		self.accessibilityLabel = writeURL
+
+		URLSession.shared.dataTask(with: url) { data, response, error in
+			guard
+				let data = data, error == nil,
+				let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+				let image = UIImage(data: data) else {
+				completion()
+				return
 			}
-			if let currentImage = image {
-				completion(currentImage)
+
+			let currentURL = self.accessibilityLabel
+			if writeURL != currentURL {
+				completion()
+				return
 			}
+			DispatchQueue.main.async {
+				self.imageBackground.image = image
+				completion()
+			}
+
 		}.resume()
 	}
 }
