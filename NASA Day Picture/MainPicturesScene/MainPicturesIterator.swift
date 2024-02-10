@@ -12,7 +12,7 @@ protocol IMainPicturesIterator: AnyObject {
 	 Запрос данных.
 	 - Warning: Поставлена задержка на 1 сек. Так как указано в ТЗ.
 	 */
-	func fetchData()
+	func fetchData(downloadNumber: Int)
 }
 
 final class MainPicturesIterator {
@@ -29,9 +29,9 @@ final class MainPicturesIterator {
 }
 
 extension MainPicturesIterator: IMainPicturesIterator {
-	func fetchData() {
+	func fetchData(downloadNumber: Int) {
 		DispatchQueue.main.async {
-			self.worker?.getRequestData { response in
+			self.worker?.getRequestData(countLoader: downloadNumber) { response in
 				switch response {
 				case .success(let model):
 					self.presenter?.present(resultResponse: .success(model))

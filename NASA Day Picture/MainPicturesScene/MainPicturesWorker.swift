@@ -11,7 +11,7 @@ typealias CatalogDTO = Result<CollectionDTO, Error>
 
 protocol IMainPicturesWorker: AnyObject {
 	/// Получение данных, сеть, моск, файловая система.
-	func getRequestData(response: @escaping (Result<[CollectionRequest], Error>) -> Void)
+	func getRequestData(countLoader: Int, response: @escaping (Result<[CollectionRequest], Error>) -> Void)
 }
 
 final class MainPicturesWorker: IMainPicturesWorker {
@@ -33,8 +33,8 @@ final class MainPicturesWorker: IMainPicturesWorker {
 		self.converterService = converterService
 	}
 
-	func getRequestData(response: @escaping (Result<[CollectionRequest], Error>) -> Void) {
-		let urlString = URLS.allPictures(1)
+	func getRequestData(countLoader: Int, response: @escaping (Result<[CollectionRequest], Error>) -> Void) {
+		let urlString = URLS.allPictures(countLoader)
 		networkManager?.getData(url: urlString.assembly) { result in
 			switch result {
 			case .success(let data):

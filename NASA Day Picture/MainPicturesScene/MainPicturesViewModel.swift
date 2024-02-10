@@ -26,7 +26,7 @@ enum MainPicturesModel {
 			let title: String
 			let photograph: String
 			let description: String
-			let image: String
+			let imageURL: String
 		}
 	}
 
@@ -54,7 +54,7 @@ extension CollectionRequest {
 			title: from.title,
 			photograph: from.photographer ?? "",
 			description: from.description ?? "",
-			image: link.href)
+			imageURL: link.href)
 	}
 }
 
@@ -73,7 +73,7 @@ extension MainPicturesModel.ViewModel.Card {
 			title: from.title,
 			photograph: from.photograph,
 			description: from.description,
-			image: URL(string: from.image)
+			image: URL(string: from.imageURL)
 		)
 	}
 }

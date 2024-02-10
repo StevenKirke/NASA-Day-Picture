@@ -20,7 +20,9 @@ final class MainPicturesViewController: UIViewController {
 	var iterator: IMainPicturesIterator?
 
 	// MARK: - Private properties
-	let labelTest = UILabel()
+	private lazy var collectionViewPicture = createCollectionView()
+	private var modelForDisplay: [MainPicturesModel.ViewModel.Card] = []
+	private var countLoader: Int = 0
 
 	// MARK: - Initializator
 	init() {
@@ -41,7 +43,7 @@ final class MainPicturesViewController: UIViewController {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		setupLayout()
-		get()
+		getNetwork()
 	}
 }
 
@@ -49,7 +51,7 @@ final class MainPicturesViewController: UIViewController {
 private extension MainPicturesViewController {
 	/// Добавление элементов UIView в Controller.
 	func addUIView() {
-		let views: [UIView] = [labelTest]
+		let views: [UIView] = [collectionViewPicture]
 		views.forEach(view.addSubview)
 	}
 }
@@ -58,10 +60,15 @@ private extension MainPicturesViewController {
 private extension MainPicturesViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-		view.backgroundColor = UIColor.green
-		labelTest.text = "THis is label text"
-		labelTest.layer.borderWidth = 1
-		labelTest.textAlignment = .center
+		navigationController?.setNavigationBarHidden(true, animated: false)
+		collectionViewPicture.backgroundColor = UIColor.black
+		collectionViewPicture.register(
+			CellForCollectionPictures.self,
+			forCellWithReuseIdentifier: CellForCollectionPictures.reuseIdentifier
+		)
+		collectionViewPicture.delegate = self
+		collectionViewPicture.dataSource = self
+		collectionViewPicture.translatesAutoresizingMaskIntoConstraints = false
 	}
 }
 
@@ -71,25 +78,93 @@ private extension MainPicturesViewController {
 	/// - Note: Добавление constraints для UIView элементов.
 
 	func setupLayout() {
-		labelTest.snp.makeConstraints { make in
-			make.left.equalToSuperview().inset(20)
-			make.right.equalToSuperview().inset(20)
-			make.top.equalToSuperview().inset(20)
-			make.bottom.equalToSuperview().inset(20)
+		collectionViewPicture.snp.makeConstraints { make in
+			make.left.equalToSuperview()
+			make.right.equalToSuperview()
+			make.top.equalToSuperview()
+			make.bottom.equalToSuperview()
 		}
 	}
 }
 
-// Action
+// - MARK: Add CollectionView delegate for managers cell.
+extension MainPicturesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return modelForDisplay.count
+	}
+
+	func collectionView(
+		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+	) -> UICollectionViewCell {
+		let currentData = modelForDisplay[indexPath.item]
+		if let cell = collectionView.dequeueReusableCell(
+			withReuseIdentifier: CellForCollectionPictures.reuseIdentifier,
+			for: indexPath
+		) as? CellForCollectionPictures {
+			cell.upLoadImage(imageURL: currentData.image)
+			cell.labelTitle.text = currentData.title
+			return cell
+		}
+		return UICollectionViewCell()
+	}
+}
+
+// - MARK: Add CollectionView delegate for size.
+extension MainPicturesViewController: UICollectionViewDelegateFlowLayout {
+	func collectionView(
+		_ collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		sizeForItemAt indexPath: IndexPath
+	) -> CGSize {
+		var currentFrame = collectionView.frame.width
+		if indexPath.item == 0 {
+			currentFrame -= 32 // Два padding по 16.
+			return CGSize(width: currentFrame, height: currentFrame / 2)
+		}
+		currentFrame -= 48 // Три padding по 16.
+		return CGSize(width: currentFrame / 2, height: currentFrame / 2)
+	}
+
+	func collectionView(
+		_ collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		minimumLineSpacingForSectionAt section: Int
+	) -> CGFloat {
+		return 16
+	}
+
+	func collectionView(
+		_ collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		insetForSectionAt section: Int
+	) -> UIEdgeInsets {
+		UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+	}
+}
+
+// - MARK: Iterator
 private extension MainPicturesViewController {
-	func get() {
-		iterator?.fetchData()
+	func getNetwork() {
+		self.countLoader += 1
+		iterator?.fetchData(downloadNumber: countLoader)
 	}
 }
 
 // - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: CollectionsModel) {
-		print("viewModel")
+		self.modelForDisplay = viewModel.cards
+		collectionViewPicture.reloadData()
+	}
+}
+
+// - MARK: Fabric UIElement.
+private extension MainPicturesViewController {
+	func createCollectionView() -> UICollectionView {
+		let layout = UICollectionViewFlowLayout()
+		layout.scrollDirection = .vertical
+		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		collectionView.showsHorizontalScrollIndicator = false
+		return collectionView
 	}
 }

@@ -34,9 +34,9 @@ private extension TabBarController {
 	func getTabController(page: TabBarPage) -> UINavigationController {
 		let navController = UINavigationController()
 		_ = navController.tabBarController?.tabBar
+		tabBar.barTintColor = UIColor.black
+		tabBar.tintColor = UIColor.white
 		tabBar.isTranslucent = false
-		tabBar.backgroundColor = Theme.backgroundColor
-		tabBar.tintColor = Theme.mainColor
 
 		navController.tabBarItem = UITabBarItem(
 			title: page.pageTitle(),

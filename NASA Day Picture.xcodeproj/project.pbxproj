@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		329AC9872B76B66100C4059E /* CellForCollectionPictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329AC9862B76B66100C4059E /* CellForCollectionPictures.swift */; };
+		329AC98A2B76E0A400C4059E /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329AC9892B76E0A400C4059E /* Extension+UIImageView.swift */; };
+		329AC98D2B77903900C4059E /* CeraRoundProMedium in Resources */ = {isa = PBXBuildFile; fileRef = 329AC98C2B77903900C4059E /* CeraRoundProMedium */; };
 		32D8A93F2B74B7EE0015F1CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A93E2B74B7EE0015F1CE /* AppDelegate.swift */; };
 		32D8A9412B74B7EE0015F1CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9402B74B7EE0015F1CE /* SceneDelegate.swift */; };
 		32D8A9482B74B7EF0015F1CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A9472B74B7EF0015F1CE /* Assets.xcassets */; };
@@ -41,11 +44,14 @@
 		32D8A99F2B7511580015F1CE /* URLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A99E2B7511580015F1CE /* URLS.swift */; };
 		32D8A9A12B7558410015F1CE /* ConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8A9A02B7558410015F1CE /* ConverterService.swift */; };
 		32D8A9AD2B7696CA0015F1CE /* Packages in Resources */ = {isa = PBXBuildFile; fileRef = 32D8A9AC2B7696CA0015F1CE /* Packages */; };
-		32D8A9B02B769BE10015F1CE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9AF2B769BE10015F1CE /* SnapKit */; };
-		32D8A9B22B769BE10015F1CE /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */; };
+		32D8A9B82B76B4D10015F1CE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9B72B76B4D10015F1CE /* SnapKit */; };
+		32D8A9BA2B76B4D10015F1CE /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 32D8A9B92B76B4D10015F1CE /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		329AC9862B76B66100C4059E /* CellForCollectionPictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellForCollectionPictures.swift; sourceTree = "<group>"; };
+		329AC9892B76E0A400C4059E /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		329AC98C2B77903900C4059E /* CeraRoundProMedium */ = {isa = PBXFileReference; lastKnownFileType = file; name = CeraRoundProMedium; path = ../../../../../stevenkirke/Downloads/Fonts/CeraRoundPRO/CeraRoundProMedium; sourceTree = "<group>"; };
 		32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA Day Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D8A93E2B74B7EE0015F1CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D8A9402B74B7EE0015F1CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,14 +96,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32D8A9B02B769BE10015F1CE /* SnapKit in Frameworks */,
-				32D8A9B22B769BE10015F1CE /* SnapKit-Dynamic in Frameworks */,
+				32D8A9B82B76B4D10015F1CE /* SnapKit in Frameworks */,
+				32D8A9BA2B76B4D10015F1CE /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		329AC9852B76B61400C4059E /* PicturesCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				329AC9862B76B66100C4059E /* CellForCollectionPictures.swift */,
+			);
+			path = PicturesCollectionView;
+			sourceTree = "<group>";
+		};
+		329AC98B2B778FFC00C4059E /* Fonds */ = {
+			isa = PBXGroup;
+			children = (
+				329AC98C2B77903900C4059E /* CeraRoundProMedium */,
+			);
+			name = Fonds;
+			sourceTree = "<group>";
+		};
 		32D8A9322B74B7EE0015F1CE = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +158,7 @@
 		32D8A9532B74B8110015F1CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				329AC98B2B778FFC00C4059E /* Fonds */,
 				32D8A94C2B74B7EF0015F1CE /* Info.plist */,
 				32D8A9472B74B7EF0015F1CE /* Assets.xcassets */,
 				32D8A9492B74B7EF0015F1CE /* LaunchScreen.storyboard */,
@@ -146,7 +169,6 @@
 		32D8A9542B74B8230015F1CE /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				32D8A9A22B7670410015F1CE /* CommonScenes */,
 				32D8A9582B74B86E0015F1CE /* MainFlow */,
 				32D8A9592B74B89F0015F1CE /* PictureFlow */,
 				32D8A95A2B74B8B40015F1CE /* SearchFlow */,
@@ -226,6 +248,7 @@
 				32D8A9672B74BB510015F1CE /* MainPicturesIterator.swift */,
 				32D8A9692B74BB5F0015F1CE /* MainPicturesPresenter.swift */,
 				32D8A96B2B74BB6C0015F1CE /* MainPicturesViewModel.swift */,
+				329AC9852B76B61400C4059E /* PicturesCollectionView */,
 				32D8A99A2B74F9850015F1CE /* Worker */,
 			);
 			path = MainPicturesScene;
@@ -265,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				32D8A97D2B74C2C90015F1CE /* Extension+UIColor.swift */,
+				329AC9892B76E0A400C4059E /* Extension+UIImageView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -294,13 +318,6 @@
 			name = Enums;
 			sourceTree = "<group>";
 		};
-		32D8A9A22B7670410015F1CE /* CommonScenes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CommonScenes;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,8 +336,8 @@
 			);
 			name = "NASA Day Picture";
 			packageProductDependencies = (
-				32D8A9AF2B769BE10015F1CE /* SnapKit */,
-				32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */,
+				32D8A9B72B76B4D10015F1CE /* SnapKit */,
+				32D8A9B92B76B4D10015F1CE /* SnapKit-Dynamic */,
 			);
 			productName = "NASA Day Picture";
 			productReference = 32D8A93B2B74B7EE0015F1CE /* NASA Day Picture.app */;
@@ -371,6 +388,7 @@
 				32D8A9602B74BA5F0015F1CE /* swiftlint.yml in Resources */,
 				32D8A9482B74B7EF0015F1CE /* Assets.xcassets in Resources */,
 				32D8A9AD2B7696CA0015F1CE /* Packages in Resources */,
+				329AC98D2B77903900C4059E /* CeraRoundProMedium in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +428,7 @@
 				32D8A9662B74BB410015F1CE /* MainPicturesViewController.swift in Sources */,
 				32D8A9892B74C3800015F1CE /* MainSearchCoordinator.swift in Sources */,
 				32D8A9412B74B7EE0015F1CE /* SceneDelegate.swift in Sources */,
+				329AC9872B76B66100C4059E /* CellForCollectionPictures.swift in Sources */,
 				32D8A96E2B74BB7A0015F1CE /* MainPicturesWorker.swift in Sources */,
 				32D8A9A12B7558410015F1CE /* ConverterService.swift in Sources */,
 				32D8A9872B74C36D0015F1CE /* MainPicturesCoordinator.swift in Sources */,
@@ -428,6 +447,7 @@
 				32D8A9722B74BFDA0015F1CE /* TabBarPage.swift in Sources */,
 				32D8A97E2B74C2C90015F1CE /* Extension+UIColor.swift in Sources */,
 				32D8A9742B74C2280015F1CE /* TabBarController.swift in Sources */,
+				329AC98A2B76E0A400C4059E /* Extension+UIImageView.swift in Sources */,
 				32D8A9642B74BB010015F1CE /* MainPicturesAssembler.swift in Sources */,
 				32D8A96A2B74BB5F0015F1CE /* MainPicturesPresenter.swift in Sources */,
 				32D8A99C2B750DB20015F1CE /* CollectionDTO.swift in Sources */,
@@ -666,11 +686,11 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		32D8A9AF2B769BE10015F1CE /* SnapKit */ = {
+		32D8A9B72B76B4D10015F1CE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SnapKit;
 		};
-		32D8A9B12B769BE10015F1CE /* SnapKit-Dynamic */ = {
+		32D8A9B92B76B4D10015F1CE /* SnapKit-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "SnapKit-Dynamic";
 		};

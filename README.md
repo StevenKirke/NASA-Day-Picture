@@ -24,7 +24,10 @@
 
 ``` bash
 └── NASA Day Picture
+    ├── swiftlint.yml
     ├── README.md
+    ├── Packages
+    │       └── SnapKit-develop
     └── NASA Day Picture
         ├── Enums
         │   └── URLS.swift
@@ -33,7 +36,8 @@
         │       ├── CustomColors.swift
         │       └── StyleColors.swift
         ├── Extensions
-        │   └── ExtensionUIColor.swift
+        │   ├── Extension+UIColor.swift
+        │   └── Extension+UIImageView.swift
         ├── Managers
         │       ├── DecodeJSONManager.swift
         │       └── NetworkManager.swift
@@ -44,7 +48,7 @@
         │   ├── AppCoordinator.swift
         │   ├── MainCoordinator.swift
         │   ├── MainPicturesCoordinator.swift
-        │   ├── MainSearchCoordinator.swift
+        │   └── MainSearchCoordinator.swift
         ├── Flows
         │   ├── IConfigurator.swift
         │   ├── MainFlow
@@ -57,6 +61,8 @@
         │   │       ├── MainPicturesIterator.swift
         │   │       ├── MainPicturesPresenter.swift
         │   │       ├── MainPicturesViewModel.swift
+        │   │       ├── PicturesCollectionView
+        │   │       │   └── CellForCollectionPictures.swift
         │   │       └── Worker
         │   │           ├── MainPicturesWorker.swift
         │   │           └── CollectionDTO.swift
@@ -72,7 +78,8 @@
         │   ├── AppDelegate.swift
         │   └── SceneDelegate.swift
         └── Resources
-            ├── swiftlint.yml
+            │   └── Fonds
+            │       └── CeraRoundProMedium
             ├── LaunchScreen.storyboard
             ├── Assets.xcassets
             └── Info.plist
