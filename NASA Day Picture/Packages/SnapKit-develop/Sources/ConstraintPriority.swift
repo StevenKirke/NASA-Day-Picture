@@ -75,3 +75,4 @@ public struct ConstraintPriority: ExpressibleByFloatLiteral, Equatable, Strideab
         return other.value - value
     }
 }
+// swiftlint:enable all

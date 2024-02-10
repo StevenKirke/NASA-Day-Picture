@@ -65,3 +65,4 @@ class BasicUIScrollViewController: UIViewController {
         super.updateViewConstraints()
     }
 }
+// swiftlint:enable all

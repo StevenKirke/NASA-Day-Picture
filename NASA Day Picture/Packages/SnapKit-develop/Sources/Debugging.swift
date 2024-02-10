@@ -167,3 +167,4 @@ private func descriptionForObject(_ object: AnyObject) -> String {
     desc += ""
     return desc
 }
+// swiftlint:enable all  

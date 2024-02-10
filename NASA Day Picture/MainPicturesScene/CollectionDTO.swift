@@ -31,13 +31,16 @@ struct Item: Decodable {
 
 // MARK: - Datum
 struct Datum: Codable {
-	let center: Center
+	let center: String?
 	let title: String
 	let nasaID: String
 	let dateCreated: String?
-	let keywords: [String]
+	let keywords: [String]?
 	let mediaType: MediaType
-	let description508, secondaryCreator, description, photographer: String?
+	let description508: String?
+	let secondaryCreator: String?
+	let description: String?
+	let photographer: String?
 	let location: String?
 	let album: [String]?
 

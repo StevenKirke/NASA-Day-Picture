@@ -752,3 +752,4 @@ class SnapKitTests: XCTestCase {
         XCTAssertEqual(higherPriority.value, highPriority.value + 1)
     }
 }
+// swiftlint:enable all

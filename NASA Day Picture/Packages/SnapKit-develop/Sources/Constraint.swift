@@ -338,3 +338,4 @@ public final class Constraint {
         item.remove(constraints: [self])
     }
 }
+// swiftlint:enable all  

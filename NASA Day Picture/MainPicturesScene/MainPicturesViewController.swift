@@ -22,7 +22,8 @@ final class MainPicturesViewController: UIViewController {
 	// MARK: - Private properties
 	private lazy var collectionViewPicture = createCollectionView()
 	private var modelForDisplay: [MainPicturesModel.ViewModel.Card] = []
-	private var countLoader: Int = 0
+	private var countPage: Int = 1
+	private var isLoadData: Bool = false
 
 	// MARK: - Initializator
 	init() {
@@ -43,7 +44,7 @@ final class MainPicturesViewController: UIViewController {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		setupLayout()
-		getNetwork()
+		answerLoadData()
 	}
 }
 
@@ -89,6 +90,15 @@ private extension MainPicturesViewController {
 
 // - MARK: Add CollectionView delegate for managers cell.
 extension MainPicturesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+	func collectionView(
+		_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath
+	) {
+		if indexPath.row == modelForDisplay.count - 1 {
+			answerLoadData()
+		}
+	}
+
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return modelForDisplay.count
 	}
@@ -142,19 +152,46 @@ extension MainPicturesViewController: UICollectionViewDelegateFlowLayout {
 	}
 }
 
-// - MARK: Iterator
-private extension MainPicturesViewController {
-	func getNetwork() {
-		self.countLoader += 1
-		iterator?.fetchData(downloadNumber: countLoader)
-	}
-}
-
 // - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: CollectionsModel) {
-		self.modelForDisplay = viewModel.cards
+		self.modelForDisplay.append(contentsOf: viewModel.cards)
+		print(self.modelForDisplay.count)
 		collectionViewPicture.reloadData()
+		stopLoad()
+	}
+}
+
+// - MARK: Logic.
+private extension MainPicturesViewController {
+	/**
+	 Метод проверки на активность загрузки.
+	 Если на текущий момент идет загрузка данных, то запрос к сети не осуществляется.
+	 */
+	func answerLoadData() {
+		print(countPage)
+		if !isLoadData {
+			getNetwork()
+			startLoad()
+		}
+	}
+
+	func startLoad() {
+		self.isLoadData = true
+	}
+
+	/// Отключение возможности запроса к данным. Добавление 1 page к запрошенным данным.
+	func stopLoad() {
+		self.isLoadData = false
+		self.countPage += 1
+	}
+}
+
+// - MARK: Iterator
+private extension MainPicturesViewController {
+	/// Запрос данных в Iterator.
+	func getNetwork() {
+		iterator?.fetchData(downloadNumber: countPage)
 	}
 }
 

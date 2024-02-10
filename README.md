@@ -88,7 +88,7 @@
 ## Running the tests
 
 ## Dependencies
-####
+#### Добавлен пакет SnapKit& 
 
 ## Workflow
 #### XCode version: 15.2 
