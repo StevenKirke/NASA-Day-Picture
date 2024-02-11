@@ -15,8 +15,10 @@
 import UIKit
 import SnapKit
 
+typealias CurrentCard = MainPicturesModel.ViewModel.Card
+
 protocol IDescriptionPictureViewLogic: AnyObject {
-	func render()
+	func render(model: MainPicturesModel.ViewModel.Card)
  }
 
 final class DescriptionPictureViewController: UIViewController {
@@ -27,7 +29,15 @@ final class DescriptionPictureViewController: UIViewController {
 	var iterator: IDescriptionPictureIterator?
 
 	// MARK: - Private properties
-	lazy var collectionDescriptionView = createCollectionView()
+	private lazy var collectionDescriptionView = createCollectionView()
+	private var collectionViewLayout = DescriptionPictureHeaderLayout()
+	private var modelForView: CurrentCard = CurrentCard(
+		title: "",
+		photograph: "",
+		description: "",
+		image: nil
+	)
+	private var padding: CGFloat = 16
 
 	// MARK: - Initializator
 	init() {
@@ -64,13 +74,16 @@ private extension DescriptionPictureViewController {
 private extension DescriptionPictureViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-		view.backgroundColor = UIColor.white
-		navigationItem.title = "Контакты"
-		// let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-		// navigationController?.navigationBar.titleTextAttributes = textAttributes
+		view.backgroundColor = UIColor.clear
+		// navigationItem.title = "Контакты"
+		let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+		navigationController?.navigationBar.titleTextAttributes = textAttributes
 
+		navigationController?.navigationBar.barTintColor = UIColor.black
+		navigationController?.navigationBar.isTranslucent = true
 		navigationController?.navigationBar.tintColor = UIColor.white
-		navigationController?.setNavigationBarHidden(true, animated: false)
+		navigationController?.setNavigationBarHidden(false, animated: true)
+		//
 		collectionDescriptionView.backgroundColor = UIColor.black
 
 		collectionDescriptionView.delegate = self
@@ -101,7 +114,7 @@ private extension DescriptionPictureViewController {
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
 		collectionDescriptionView.snp.makeConstraints { make in
-			make.top.equalToSuperview()
+			make.top.equalToSuperview().inset(-100)
 			make.left.equalToSuperview()
 			make.right.equalToSuperview()
 			make.bottom.equalToSuperview()
@@ -111,7 +124,9 @@ private extension DescriptionPictureViewController {
 
 // - MARK: Add Protocol.
 extension DescriptionPictureViewController: IDescriptionPictureViewLogic {
-	func render() { }
+	func render(model: MainPicturesModel.ViewModel.Card) {
+		self.modelForView = model
+	}
 }
 
 // - MARK: Logic.
@@ -145,6 +160,9 @@ extension DescriptionPictureViewController: UICollectionViewDataSource, UICollec
 			guard let typedHeaderView = headerView as? HeaderForPictureView else {
 				return headerView
 			}
+				if let data = modelForView.data {
+					typedHeaderView.image.image = UIImage(data: data)
+				}
 			return typedHeaderView
 		case UICollectionView.elementKindSectionFooter:
 			let footerView = collectionView.dequeueReusableSupplementaryView(
@@ -169,10 +187,13 @@ extension DescriptionPictureViewController: UICollectionViewDataSource, UICollec
 		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
 	) -> UICollectionViewCell {
 		let cell = UICollectionViewCell()
+		let currentCard = modelForView
 		if let cell = collectionView.dequeueReusableCell(
 			withReuseIdentifier: CellPictureView.identifierID,
 			for: indexPath
 		) as? CellPictureView {
+			cell.labelTitle.text = currentCard.photograph
+			cell.labelDescription.text = currentCard.description
 			return cell
 		}
 		return cell
@@ -186,7 +207,7 @@ extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
 		layout collectionViewLayout: UICollectionViewLayout,
 		referenceSizeForFooterInSection section: Int
 	) -> CGSize {
-		return .init(width: view.frame.width, height: 10)
+		return .init(width: view.frame.width, height: 0)
 	}
 
 	func collectionView(
@@ -194,25 +215,41 @@ extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
 		layout collectionViewLayout: UICollectionViewLayout,
 		sizeForItemAt indexPath: IndexPath
 	) -> CGSize {
-		CGSize(width: collectionView.frame.width - 32, height: collectionView.frame.height)
-	}
+		let currentHeight = calculateHeight()
+		let sum = currentHeight + (padding * 2) + 120 + 60
+		return CGSize(width: collectionView.frame.width - (padding * 2), height: sum)
+}
 
 	func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		insetForSectionAt section: Int
 	) -> UIEdgeInsets {
-		UIEdgeInsets(top: 50, left: 16, bottom: 0, right: 16)
+		UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+	}
+
+	private func calculateHeight() -> CGFloat {
+		let currentText = modelForView.description
+		let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]
+		let attributeText = NSAttributedString(string: currentText, attributes: attribute)
+		let constraintBox = CGSize(width: view.frame.width - (padding * 2), height: .greatestFiniteMagnitude)
+		let textHeight = attributeText.boundingRect(
+			with: constraintBox,
+			options: [.usesLineFragmentOrigin,
+		   .usesFontLeading],
+			context: nil
+		).height
+		return textHeight
 	}
 }
 
 // - MARK: Fabric UIElement.
 private extension DescriptionPictureViewController {
 	func createCollectionView() -> UICollectionView {
-		let layout = UICollectionViewFlowLayout()
-		layout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 120)
-		layout.scrollDirection = .vertical
+		let layout = DescriptionPictureHeaderLayout()
+		layout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 200)
 		let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+		layout.scrollDirection = .vertical
 		collectionView.showsHorizontalScrollIndicator = false
 		return collectionView
 	}

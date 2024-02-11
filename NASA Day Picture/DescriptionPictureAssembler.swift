@@ -8,8 +8,9 @@
 import UIKit
 
 final class DescriptionPictureAssembler {
-	func configurator() -> UIViewController {
+	func configurator(render: MainPicturesModel.ViewModel.Card) -> UIViewController {
 		let viewController = DescriptionPictureViewController()
+		viewController.render(model: render)
 		let presenter = DescriptionPicturePresenter(viewController: viewController)
 		let iterator = DescriptionPictureIterator(presenter: presenter)
 		viewController.iterator = iterator

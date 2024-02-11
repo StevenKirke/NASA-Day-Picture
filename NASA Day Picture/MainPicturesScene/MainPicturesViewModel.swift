@@ -43,6 +43,7 @@ enum MainPicturesModel {
 			let photograph: String
 			let description: String
 			let image: URL?
+			var data: Data?
 		}
 	}
 }

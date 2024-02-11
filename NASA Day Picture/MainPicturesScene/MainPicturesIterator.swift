@@ -14,7 +14,7 @@ protocol IMainPicturesIterator: AnyObject {
 	 */
 	func fetchData(downloadNumber: Int)
 
-	func showDescriptionScene()
+	func showDescriptionScene(model: MainPicturesModel.ViewModel.Card)
 }
 
 final class MainPicturesIterator {
@@ -44,7 +44,7 @@ extension MainPicturesIterator: IMainPicturesIterator {
 		}
 	}
 
-	func showDescriptionScene() {
-		presenter?.presentDescriptionScene()
+	func showDescriptionScene(model: MainPicturesModel.ViewModel.Card) {
+		presenter?.presentDescriptionScene(model: model)
 	}
 }

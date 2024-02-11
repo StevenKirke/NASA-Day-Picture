@@ -13,9 +13,11 @@ final class HeaderForPictureView: UICollectionReusableView {
 	// MARK: - Public properties
 	static let identifierHeaderID = "headerForPictureView"
 	lazy var image = createImage()
+	var imageData: Data?
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
+	// private lazy var image = createImage()
 
 	// MARK: - Initializator
 	override init(frame: CGRect) {

@@ -10,14 +10,14 @@ import SnapKit
 
 protocol IMainPicturesViewViewLogic: AnyObject {
 	func render(viewModel: CollectionsModel)
- }
+}
 
 final class MainPicturesViewController: UIViewController {
-
 	// MARK: - Public properties
 
 	// MARK: - Dependencies
 	var iterator: IMainPicturesIterator?
+	var hendlerDelegate: ICellForCollectionPicturesHendler?
 
 	// MARK: - Private properties
 	private lazy var collectionViewPicture = createCollectionView()
@@ -62,6 +62,7 @@ private extension MainPicturesViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
 		navigationController?.setNavigationBarHidden(true, animated: false)
+
 		collectionViewPicture.backgroundColor = UIColor.black
 		collectionViewPicture.register(
 			CellForCollectionPictures.self,
@@ -92,7 +93,8 @@ private extension MainPicturesViewController {
 extension MainPicturesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		iterator?.showDescriptionScene()
+		let currentCard = modelForDisplay[indexPath.row]
+		iterator?.showDescriptionScene(model: currentCard)
 	}
 
 	func collectionView(
@@ -115,11 +117,21 @@ extension MainPicturesViewController: UICollectionViewDataSource, UICollectionVi
 			withReuseIdentifier: CellForCollectionPictures.reuseIdentifier,
 			for: indexPath
 		) as? CellForCollectionPictures {
+			cell.indexPath = indexPath.item
+			cell.handlerDelegate = self
 			cell.upLoadImage(imageURL: currentData.image)
 			cell.labelTitle.text = currentData.title
 			return cell
 		}
 		return UICollectionViewCell()
+	}
+}
+
+extension MainPicturesViewController: ICellForCollectionPicturesHendler {
+	func returnDataImage(returnImage: Data?, indexPath: Int) {
+		if let currentData = returnImage {
+			modelForDisplay[indexPath].data = currentData
+		}
 	}
 }
 
@@ -159,6 +171,7 @@ extension MainPicturesViewController: UICollectionViewDelegateFlowLayout {
 // - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: CollectionsModel) {
+		// navigationController?.setNavigationBarHidden(true, animated: false)
 		self.modelForDisplay.append(contentsOf: viewModel.cards)
 		collectionViewPicture.reloadData()
 		stopLoad()

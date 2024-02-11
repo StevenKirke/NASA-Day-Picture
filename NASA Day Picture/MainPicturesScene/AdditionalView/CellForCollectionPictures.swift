@@ -8,11 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol ICellForCollectionPicturesHendler {
+	func returnDataImage(returnImage: Data?, indexPath: Int)
+}
+
 final class CellForCollectionPictures: UICollectionViewCell {
 
 	// MARK: - Public properties
+	var indexPath: Int = 0
 	static let reuseIdentifier = "CellForCollectionPictures.cell"
 	lazy var labelTitle = createUILabel()
+	var handlerDelegate: ICellForCollectionPicturesHendler?
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
@@ -21,6 +27,12 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	private var isLoadImage: Bool = false
 
 	// MARK: - Initializator
+
+	convenience init(handlerDelegate: ICellForCollectionPicturesHendler?) {
+		self.init(frame: CGRect.zero)
+		self.handlerDelegate = handlerDelegate
+	}
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		addUIView()
@@ -37,7 +49,8 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	func upLoadImage(imageURL: URL?) {
 		self.indicatorView.startAnimating()
 		guard let currentURL = imageURL else { return }
-		self.loadImage(url: currentURL) {
+		self.loadImage(url: currentURL) { returnData in
+			self.handlerDelegate?.returnDataImage(returnImage: returnData, indexPath: self.indexPath)
 			self.indicatorView.stopAnimating()
 			self.indicatorView.isHidden = true
 		}
@@ -124,7 +137,7 @@ private extension CellForCollectionPictures {
 }
 
 extension CellForCollectionPictures {
-	func loadImage(url: URL, completion: @escaping (() -> Void)) {
+	func loadImage(url: URL, completion: @escaping ((Data?) -> Void)) {
 
 		let writeURL = url.absoluteString
 		self.accessibilityLabel = writeURL
@@ -134,20 +147,19 @@ extension CellForCollectionPictures {
 				let data = data, error == nil,
 				let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
 				let image = UIImage(data: data) else {
-				completion()
+				completion(data)
 				return
 			}
 
 			let currentURL = self.accessibilityLabel
 			if writeURL != currentURL {
-				completion()
+				completion(data)
 				return
 			}
 			DispatchQueue.main.async {
 				self.imageBackground.image = image
-				completion()
+				completion(data)
 			}
-
 		}.resume()
 	}
 }

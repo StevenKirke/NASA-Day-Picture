@@ -13,7 +13,7 @@ protocol IMainPictureDelegate: AnyObject {
 	/// Запуск экрана описание c картинками.
 	func showMainPicturesScene()
 	/// Запуск экрана описание новости.
-	func showPictureDescriptionScene()
+	func showPictureDescriptionScene(model: MainPicturesModel.ViewModel.Card)
 	/**
 	 Запуск экрана предупреждения, UIAlert.
 	 - Parameters:
@@ -47,9 +47,9 @@ final class MainPicturesCoordinator: ICoordinator, IMainPictureDelegate {
 		navigationController.pushViewController(viewController, animated: true)
 	}
 
-	func showPictureDescriptionScene() {
+	func showPictureDescriptionScene(model: MainPicturesModel.ViewModel.Card) {
 		let assembler = DescriptionPictureAssembler()
-		let viewController = assembler.configurator()
+		let viewController = assembler.configurator(render: model)
 		navigationController.pushViewController(viewController, animated: true)
 	}
 

@@ -11,7 +11,7 @@ protocol IMainPicturesPresenter: AnyObject {
 	/// Метод открывающий ContactListViewController.
 	func present(resultResponse: MainPicturesModel.Request)
 
-	func presentDescriptionScene()
+	func presentDescriptionScene(model: MainPicturesModel.ViewModel.Card)
 }
 
 final class MainPicturesPresenter {
@@ -45,7 +45,7 @@ extension MainPicturesPresenter: IMainPicturesPresenter {
 		}
 	}
 
-	func presentDescriptionScene() {
-		mainPictureDelegate?.showPictureDescriptionScene()
+	func presentDescriptionScene(model: MainPicturesModel.ViewModel.Card) {
+		mainPictureDelegate?.showPictureDescriptionScene(model: model)
 	}
 }

@@ -8,20 +8,12 @@
 import UIKit
 import SnapKit
 
-// swiftlint:disable all
-
-let text = """
-This panoramic view encompasses the entire sky as seen by Two Micron All-Sky Survey. The measured brightnesses of half a billion stars (points) have been combined into colors representing three distinct wavelengths of infrared light: blue at 1.2 microns, green at 1.6 microns, and red at 2.2 microns. This image is centered on the core of our own Milky Way galaxy, toward the constellation of Sagittarius. The reddish stars seemingly hovering in the middle of the Milky Way's disc -- many of them never observed before -- trace the densest dust clouds in our galaxy. The two faint smudges seen in the lower right quadrant are our neighboring galaxies, the Small and Large Magellanic Clouds.  http://photojournal.jpl.nasa.gov/catalog/PIA04250
-This panoramic view encompasses the entire sky as seen by Two Micron All-Sky Survey. The measured brightnesses of half a billion stars (points) have been combined into colors representing three distinct wavelengths of infrared light: blue at 1.2 microns, green at 1.6 microns, and red at 2.2 microns. This image is centered on the core of our own Milky Way galaxy, toward the constellation of Sagittarius. The reddish stars seemingly hovering in the middle of the Milky Way's disc -- many of them never observed before -- trace the densest dust clouds in our galaxy. The two faint smudges seen in the lower right quadrant are our neighboring galaxies, the Small and Large Magellanic Clouds.  http://photojournal.jpl.nasa.gov/catalog/PIA04250
-
-"""
-// swiftlint:enable all
-
 final class CellPictureView: UICollectionViewCell {
 
 	// MARK: - Public properties
 	static let identifierID = "CellPictureView.cell"
 	lazy var labelTitle = createUILabel()
+	lazy var labelDescription = createUILabel()
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
@@ -43,7 +35,7 @@ final class CellPictureView: UICollectionViewCell {
 private extension CellPictureView {
 	/// Добавление элементов UIView в Controller.
 	func addUIView() {
-		let views: [UIView] = [labelTitle]
+		let views: [UIView] = [labelTitle, labelDescription]
 		views.forEach(contentView.addSubview)
 	}
 }
@@ -55,9 +47,14 @@ private extension CellPictureView {
 		backgroundColor = UIColor.clear
 
 		labelTitle.textColor = UIColor.white
+		labelTitle.numberOfLines = 1
 		labelTitle.font = UIFont.systemFont(ofSize: 20, weight: .regular)
 		labelTitle.textAlignment = .left
-		labelTitle.text = text
+		labelTitle.text = ""
+
+		labelDescription.textColor = UIColor.white
+		labelDescription.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+		labelDescription.textAlignment = .left
 	}
 }
 
@@ -66,8 +63,15 @@ private extension CellPictureView {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
-		labelTitle.snp.makeConstraints { label in
-			label.top.bottom.equalToSuperview().inset(16)
+
+		labelTitle.snp.makeConstraints { title in
+			title.top.equalToSuperview().inset(120)
+			title.left.right.equalToSuperview().inset(0)
+		}
+
+		labelDescription.snp.makeConstraints { label in
+			label.top.equalTo(labelTitle).inset(40)
+			label.bottom.equalToSuperview().inset(16)
 			label.left.right.equalToSuperview().inset(0)
 		}
 	}
