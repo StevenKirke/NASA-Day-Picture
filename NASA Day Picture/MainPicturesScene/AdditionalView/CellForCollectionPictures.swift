@@ -25,6 +25,7 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	private lazy var imageBackground = createImage()
 	private lazy var indicatorView = createIndicator()
 	private var isLoadImage: Bool = false
+	var currentURL: URL?
 
 	// MARK: - Initializator
 
@@ -46,10 +47,9 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	// MARK: - Lifecycle
 
 	// MARK: - Public methods
-	func upLoadImage(imageURL: URL?) {
+	func downloadImage(imageURL: URL) {
 		self.indicatorView.startAnimating()
-		guard let currentURL = imageURL else { return }
-		self.loadImage(url: currentURL) { returnData in
+		self.loadImage(url: imageURL) { returnData in
 			self.handlerDelegate?.returnDataImage(returnImage: returnData, indexPath: self.indexPath)
 			self.indicatorView.stopAnimating()
 			self.indicatorView.isHidden = true
@@ -136,6 +136,7 @@ private extension CellForCollectionPictures {
 	}
 }
 
+#warning("TODO: Убрать accessibilityLabel и заменить на переменную потому что она используется для элемента доступности при локализации - отвечает за озвучку экрана")
 extension CellForCollectionPictures {
 	func loadImage(url: URL, completion: @escaping ((Data?) -> Void)) {
 
@@ -143,20 +144,20 @@ extension CellForCollectionPictures {
 		self.accessibilityLabel = writeURL
 
 		URLSession.shared.dataTask(with: url) { data, response, error in
-			guard
-				let data = data, error == nil,
-				let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-				let image = UIImage(data: data) else {
-				completion(data)
-				return
-			}
-
-			let currentURL = self.accessibilityLabel
-			if writeURL != currentURL {
-				completion(data)
-				return
-			}
 			DispatchQueue.main.async {
+				guard
+					let data = data, error == nil,
+					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+					let image = UIImage(data: data) else {
+					completion(data)
+					return
+				}
+
+				let currentURL = self.accessibilityLabel
+				if writeURL != currentURL {
+					completion(data)
+					return
+				}
 				self.imageBackground.image = image
 				completion(data)
 			}

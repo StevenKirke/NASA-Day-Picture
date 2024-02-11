@@ -23,6 +23,7 @@ final class DescriptionPictureHeaderLayout: UICollectionViewFlowLayout {
 				attributes.frame = CGRect(x: 0, y: 0, width: width, height: currentHeight)
 			}
 		}
+		print(layoutAttributes)
 		return layoutAttributes
 	}
 

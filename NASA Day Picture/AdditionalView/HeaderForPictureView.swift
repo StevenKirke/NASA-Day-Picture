@@ -66,7 +66,7 @@ private extension HeaderForPictureView {
 	func createImage() -> UIImageView {
 		let image = UIImage(named: "Images/perseveranceRover")
 		let imageView = UIImageView(image: image)
-		imageView.contentMode = .scaleAspectFill
+		imageView.contentMode = .scaleAspectFit
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 
 		return imageView

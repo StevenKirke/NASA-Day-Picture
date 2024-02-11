@@ -27,7 +27,7 @@ final class DescriptionPictureViewController: UIViewController {
 
 	// MARK: - Dependencies
 	var iterator: IDescriptionPictureIterator?
-
+	let customLayout = DescriptionPictureHeaderLayout()
 	// MARK: - Private properties
 	private lazy var collectionDescriptionView = createCollectionView()
 	private var collectionViewLayout = DescriptionPictureHeaderLayout()
@@ -38,6 +38,7 @@ final class DescriptionPictureViewController: UIViewController {
 		image: nil
 	)
 	private var padding: CGFloat = 16
+	private var currentHeight: CGFloat = .zero
 
 	// MARK: - Initializator
 	init() {
@@ -53,11 +54,17 @@ final class DescriptionPictureViewController: UIViewController {
 		super.viewDidLoad()
 		setupConfiguration()
 		addUIView()
+		iterator?.fetchData()
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		setupLayout()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.setNavigationBarHidden(false, animated: false)
 	}
 }
 
@@ -82,10 +89,8 @@ private extension DescriptionPictureViewController {
 		navigationController?.navigationBar.barTintColor = UIColor.black
 		navigationController?.navigationBar.isTranslucent = true
 		navigationController?.navigationBar.tintColor = UIColor.white
-		navigationController?.setNavigationBarHidden(false, animated: true)
-		//
-		collectionDescriptionView.backgroundColor = UIColor.black
 
+		collectionDescriptionView.backgroundColor = UIColor.black
 		collectionDescriptionView.delegate = self
 		collectionDescriptionView.dataSource = self
 
@@ -126,6 +131,8 @@ private extension DescriptionPictureViewController {
 extension DescriptionPictureViewController: IDescriptionPictureViewLogic {
 	func render(model: MainPicturesModel.ViewModel.Card) {
 		self.modelForView = model
+		self.currentHeight = calculateHeight(currentText: modelForView.description) + (padding + 2) + 100
+		collectionDescriptionView.reloadData()
 	}
 }
 
@@ -198,6 +205,13 @@ extension DescriptionPictureViewController: UICollectionViewDataSource, UICollec
 		}
 		return cell
 	}
+
+//	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//		guard let layout = customLayout as? UICollectionViewFlowLayout else { return }
+//		let offsetY = scrollView.contentOffset.y
+//
+//		layout.sectionHeadersPinToVisibleBounds = offsetY < 0
+//	}
 }
 
 extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
@@ -215,21 +229,20 @@ extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
 		layout collectionViewLayout: UICollectionViewLayout,
 		sizeForItemAt indexPath: IndexPath
 	) -> CGSize {
-		let currentHeight = calculateHeight()
-		let sum = currentHeight + (padding * 2) + 120 + 60
-		return CGSize(width: collectionView.frame.width - (padding * 2), height: sum)
-}
+		return CGSize(width: collectionView.frame.width - (padding * 2), height: collectionView.frame.height)
+	}
 
 	func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		insetForSectionAt section: Int
 	) -> UIEdgeInsets {
-		UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+		return UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
 	}
+}
 
-	private func calculateHeight() -> CGFloat {
-		let currentText = modelForView.description
+private extension DescriptionPictureViewController {
+	private func calculateHeight(currentText: String) -> CGFloat {
 		let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]
 		let attributeText = NSAttributedString(string: currentText, attributes: attribute)
 		let constraintBox = CGSize(width: view.frame.width - (padding * 2), height: .greatestFiniteMagnitude)
@@ -246,10 +259,11 @@ extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
 // - MARK: Fabric UIElement.
 private extension DescriptionPictureViewController {
 	func createCollectionView() -> UICollectionView {
-		let layout = DescriptionPictureHeaderLayout()
-		layout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 200)
-		let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-		layout.scrollDirection = .vertical
+		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: customLayout)
+		customLayout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 200)
+		customLayout.scrollDirection = .vertical
+		collectionViewLayout.invalidateLayout()
+
 		collectionView.showsHorizontalScrollIndicator = false
 		return collectionView
 	}

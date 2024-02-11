@@ -46,6 +46,11 @@ final class MainPicturesViewController: UIViewController {
 		setupLayout()
 		answerLoadData()
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		navigationController?.setNavigationBarHidden(true, animated: false)
+	}
 }
 
 // - MARK: Add UIView in Controler
@@ -61,7 +66,7 @@ private extension MainPicturesViewController {
 private extension MainPicturesViewController {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-		navigationController?.setNavigationBarHidden(true, animated: false)
+		// navigationController?.setNavigationBarHidden(true, animated: false)
 
 		collectionViewPicture.backgroundColor = UIColor.black
 		collectionViewPicture.register(
@@ -108,7 +113,8 @@ extension MainPicturesViewController: UICollectionViewDataSource, UICollectionVi
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return modelForDisplay.count
 	}
-
+#warning("TODO: Делать проверку заранее чем внутри классов")
+#warning("TODO: обробатывать любую загрузку ячейки. прописать в ячейку ошибку техническую")
 	func collectionView(
 		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
 	) -> UICollectionViewCell {
@@ -119,7 +125,9 @@ extension MainPicturesViewController: UICollectionViewDataSource, UICollectionVi
 		) as? CellForCollectionPictures {
 			cell.indexPath = indexPath.item
 			cell.handlerDelegate = self
-			cell.upLoadImage(imageURL: currentData.image)
+			if let url = currentData.image {
+				cell.downloadImage(imageURL: url)
+			}
 			cell.labelTitle.text = currentData.title
 			return cell
 		}
@@ -164,14 +172,13 @@ extension MainPicturesViewController: UICollectionViewDelegateFlowLayout {
 		layout collectionViewLayout: UICollectionViewLayout,
 		insetForSectionAt section: Int
 	) -> UIEdgeInsets {
-		UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+		UIEdgeInsets(top: -56, left: 16, bottom: 0, right: 16)
 	}
 }
 
 // - MARK: Add Protocol.
 extension MainPicturesViewController: IMainPicturesViewViewLogic {
 	func render(viewModel: CollectionsModel) {
-		// navigationController?.setNavigationBarHidden(true, animated: false)
 		self.modelForDisplay.append(contentsOf: viewModel.cards)
 		collectionViewPicture.reloadData()
 		stopLoad()
@@ -213,7 +220,7 @@ private extension MainPicturesViewController {
 // - MARK: Fabric UIElement.
 private extension MainPicturesViewController {
 	func createCollectionView() -> UICollectionView {
-		let layout = UICollectionViewFlowLayout()
+		let layout = UICollectionViewFlowLayout()// UICollectionViewFlowLayout()
 		layout.scrollDirection = .vertical
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collectionView.showsHorizontalScrollIndicator = false

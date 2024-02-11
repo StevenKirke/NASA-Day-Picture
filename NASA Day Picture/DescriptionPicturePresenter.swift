@@ -9,7 +9,7 @@ import Foundation
 
 protocol IDescriptionPicturePresenter: AnyObject {
 	/// Метод открывающий ContactListViewController.
-	func present()
+	func present(model: MainPicturesModel.ViewModel.Card)
 }
 
 final class DescriptionPicturePresenter {
@@ -28,5 +28,7 @@ final class DescriptionPicturePresenter {
 }
 
 extension DescriptionPicturePresenter: IDescriptionPicturePresenter {
-	func present() { }
+	func present(model: MainPicturesModel.ViewModel.Card) {
+		viewController?.render(model: model)
+	}
 }

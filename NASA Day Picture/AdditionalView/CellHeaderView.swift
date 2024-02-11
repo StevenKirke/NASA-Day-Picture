@@ -55,6 +55,7 @@ private extension CellPictureView {
 		labelDescription.textColor = UIColor.white
 		labelDescription.font = UIFont.systemFont(ofSize: 20, weight: .regular)
 		labelDescription.textAlignment = .left
+		labelDescription.numberOfLines = 0
 	}
 }
 
@@ -67,12 +68,12 @@ private extension CellPictureView {
 		labelTitle.snp.makeConstraints { title in
 			title.top.equalToSuperview().inset(120)
 			title.left.right.equalToSuperview().inset(0)
+			title.height.equalTo(40)
 		}
 
 		labelDescription.snp.makeConstraints { label in
-			label.top.equalTo(labelTitle).inset(40)
-			label.bottom.equalToSuperview().inset(16)
-			label.left.right.equalToSuperview().inset(0)
+			label.top.equalTo(labelTitle.snp.bottom).inset(0)
+			label.left.right.equalToSuperview()
 		}
 	}
 }
