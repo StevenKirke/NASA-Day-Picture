@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IMainSearchIterator: AnyObject {
-	func fetchData()
+	func fetchData(text: String)
 }
 
 final class MainSearchIterator {
@@ -25,7 +25,19 @@ final class MainSearchIterator {
 }
 
 extension MainSearchIterator: IMainSearchIterator {
-	func fetchData() {
-		self.presenter?.present()
+	func fetchData(text: String) {
+		DispatchQueue.main.async {
+			self.worker?.getRequestData(text: text) { response in
+				switch response {
+				case .success(let model):
+					let responseModel = model.map {
+						MainSearchViewModel.Request.Collection(title: $0.title, imageURL: $0.imageURL)
+					}
+					self.presenter?.present(resultResponse: .success(responseModel))
+				case .failure(let error):
+					self.presenter?.present(resultResponse: .failure(error))
+				}
+			}
+		}
 	}
 }

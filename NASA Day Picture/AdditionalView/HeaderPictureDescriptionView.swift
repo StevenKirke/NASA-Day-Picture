@@ -1,19 +1,20 @@
 //
-//  HeaderForPictureView.swift
+//  DescriptionPictureHeaderView.swift
 //  NASA Day Picture
 //
-//  Created by Steven Kirke on 10.02.2024.
+//  Created by Steven Kirke on 12.02.2024.
 //
 
 import UIKit
 import SnapKit
 
-final class HeaderForPictureView: UICollectionReusableView {
+final class HeaderPictureDescriptionView: UICollectionReusableView {
 
 	// MARK: - Public properties
-	static let identifierHeaderID = "headerForPictureView"
+	static let identifierHeaderID = "descriptionPictureHeaderView"
 	lazy var image = createImage()
 	var imageData: Data?
+
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
@@ -27,13 +28,13 @@ final class HeaderForPictureView: UICollectionReusableView {
 		setupLayout()
 	}
 
-	required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)!
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
 	}
 }
 
 // - MARK: Add UIView in Controler
-private extension HeaderForPictureView {
+private extension HeaderPictureDescriptionView {
 	/// Добавление элементов UIView в Controller.
 	func addUIView() {
 		addSubview(image)
@@ -41,15 +42,15 @@ private extension HeaderForPictureView {
 }
 
 // - MARK: Initialisation configuration
-private extension HeaderForPictureView {
+private extension HeaderPictureDescriptionView {
 	/// Настройка UI элементов
 	func setupConfiguration() {
-		backgroundColor = UIColor.red
+		backgroundColor = UIColor.black
 	}
 }
 
 // - MARK: Initialisation constraint elements.
-private extension HeaderForPictureView {
+private extension HeaderPictureDescriptionView {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
@@ -62,11 +63,12 @@ private extension HeaderForPictureView {
 }
 
 // - MARK: Fabric UI Element.
-private extension HeaderForPictureView {
+private extension HeaderPictureDescriptionView {
 	func createImage() -> UIImageView {
-		let image = UIImage(named: "Images/perseveranceRover")
+		let image = UIImage(systemName: "photo")?.withRenderingMode(.alwaysTemplate)
 		let imageView = UIImageView(image: image)
-		imageView.contentMode = .scaleAspectFit
+		imageView.tintColor = UIColor.gray
+		imageView.contentMode = .scaleAspectFill
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 
 		return imageView

@@ -14,6 +14,7 @@ final class CellPictureView: UICollectionViewCell {
 	static let identifierID = "CellPictureView.cell"
 	lazy var labelTitle = createUILabel()
 	lazy var labelDescription = createUILabel()
+
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
@@ -45,17 +46,14 @@ private extension CellPictureView {
 	/// Настройка UI элементов
 	func setupConfiguration() {
 		backgroundColor = UIColor.clear
-
 		labelTitle.textColor = UIColor.white
 		labelTitle.numberOfLines = 1
 		labelTitle.font = UIFont.systemFont(ofSize: 20, weight: .regular)
 		labelTitle.textAlignment = .left
-		labelTitle.text = ""
 
 		labelDescription.textColor = UIColor.white
 		labelDescription.font = UIFont.systemFont(ofSize: 20, weight: .regular)
 		labelDescription.textAlignment = .left
-		labelDescription.numberOfLines = 0
 	}
 }
 
@@ -64,15 +62,14 @@ private extension CellPictureView {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
-
 		labelTitle.snp.makeConstraints { title in
-			title.top.equalToSuperview().inset(120)
+			title.top.equalToSuperview().inset(16)
 			title.left.right.equalToSuperview().inset(0)
-			title.height.equalTo(40)
+			title.height.equalTo(24)
 		}
 
 		labelDescription.snp.makeConstraints { label in
-			label.top.equalTo(labelTitle.snp.bottom).inset(0)
+			label.top.equalTo(labelTitle.snp.bottom).inset(-20)
 			label.left.right.equalToSuperview()
 		}
 	}

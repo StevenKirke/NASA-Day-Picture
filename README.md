@@ -38,6 +38,7 @@
         ├── Extensions
         │   ├── Extension+UIColor.swift
         │   └── Extension+UIImageView.swift
+        │   └── Extension+UIView.swift
         ├── Managers
         │       ├── DecodeJSONManager.swift
         │       └── NetworkManager.swift
@@ -73,18 +74,24 @@
         │   │       ├── DescriptionPictureIterator.swift
         │   │       ├── DescriptionPicturePresenter.swift
         │   │       ├── DescriptionPictureViewModel.swift
-        │   │       └── AdditionalView
-        │   │           │── HeaderForPictureView.swift
-        │   │           │── CellHeaderView.swift
-        │   │           └── FooterForPicturesView.swift
+        │   │       │── AdditionalView
+        │   │       │   │── HeaderPictureDescriptionView.swift
+        │   │       │   │── CellHeaderView.swift
+        │   │       │   └── FooterForPicturesView.swift
+        │   │       └── Custom
+        │   │           └── StretchyHeaderLayout.swift
         │   └── SearchFlow
         │       └── MainSearchScene
-        │               ├── MainSearchAssembler.swift
-        │               ├── MainSearchViewController.swift
-        │               ├── MainSearchIterator.swift
-        │               ├── MainSearchPresenter.swift
-        │               ├── MainSearchModel.swift
-        │               └── MainSearchWorker.swift
+        │           │   ├── MainSearchAssembler.swift
+        │           │   ├── MainSearchViewController.swift
+        │           │   ├── MainSearchIterator.swift
+        │           │   ├── MainSearchPresenter.swift
+        │           │   ├── MainSearchModel.swift
+        │           ├── AdditionalView
+        │           │   └── CellForCollectionSearch.swift
+        │           └── Worker
+        │               ├── MainSearchWorker.swift
+        │               └── SearchCollectionDTO.swift
         ├── Application
         │   ├── AppDelegate.swift
         │   └── SceneDelegate.swift

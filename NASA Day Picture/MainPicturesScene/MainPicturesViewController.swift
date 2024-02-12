@@ -113,8 +113,7 @@ extension MainPicturesViewController: UICollectionViewDataSource, UICollectionVi
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return modelForDisplay.count
 	}
-#warning("TODO: Делать проверку заранее чем внутри классов")
-#warning("TODO: обробатывать любую загрузку ячейки. прописать в ячейку ошибку техническую")
+
 	func collectionView(
 		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
 	) -> UICollectionViewCell {
@@ -220,7 +219,7 @@ private extension MainPicturesViewController {
 // - MARK: Fabric UIElement.
 private extension MainPicturesViewController {
 	func createCollectionView() -> UICollectionView {
-		let layout = UICollectionViewFlowLayout()// UICollectionViewFlowLayout()
+		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .vertical
 		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collectionView.showsHorizontalScrollIndicator = false

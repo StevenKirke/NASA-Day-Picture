@@ -7,11 +7,21 @@
 
 import UIKit
 
-final class MainSearchAssembler: IConfigurator {
-	func configurator() -> UIViewController {
-		let worker = MainSearchWorker()
+final class MainSearchAssembler {
+	func configurator(delegate: IMainSearchDelegate) -> UIViewController {
+		let networkManager = NetworkManager()
+		let decodeGSONManager = DecodeJsonManager()
+		let convectorDTO = ConvertServiceForPictures()
+		let worker = MainSearchWorker(
+			networkManager: networkManager,
+			decodeJSONManager: decodeGSONManager,
+			converterService: convectorDTO
+		)
 		let viewController = MainSearchViewController()
-		let presenter = MainSearchPresenter(viewController: viewController)
+		let presenter = MainSearchPresenter(
+			viewController: viewController,
+			mainSearchDelegate: delegate
+		)
 		let iterator = MainSearchIterator(presenter: presenter, worker: worker)
 
 		viewController.iterator = iterator

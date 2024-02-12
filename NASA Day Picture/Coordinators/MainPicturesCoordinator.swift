@@ -38,7 +38,6 @@ final class MainPicturesCoordinator: ICoordinator, IMainPictureDelegate {
 	// MARK: - Public methods
 	func start() {
 		showMainPicturesScene()
-		// showPictureDescriptionScene()
 	}
 
 	func showMainPicturesScene() {

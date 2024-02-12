@@ -27,10 +27,8 @@ final class DescriptionPictureViewController: UIViewController {
 
 	// MARK: - Dependencies
 	var iterator: IDescriptionPictureIterator?
-	let customLayout = DescriptionPictureHeaderLayout()
 	// MARK: - Private properties
 	private lazy var collectionDescriptionView = createCollectionView()
-	private var collectionViewLayout = DescriptionPictureHeaderLayout()
 	private var modelForView: CurrentCard = CurrentCard(
 		title: "",
 		photograph: "",
@@ -39,6 +37,7 @@ final class DescriptionPictureViewController: UIViewController {
 	)
 	private var padding: CGFloat = 16
 	private var currentHeight: CGFloat = .zero
+	private var lastContentOffset: CGFloat = 0
 
 	// MARK: - Initializator
 	init() {
@@ -83,13 +82,22 @@ private extension DescriptionPictureViewController {
 	func setupConfiguration() {
 		view.backgroundColor = UIColor.clear
 		// navigationItem.title = "Контакты"
+		settingNavigationBar()
+		settingCollectionView()
+	}
+}
+
+// - MARK: Setup NavigationBar.
+private extension DescriptionPictureViewController {
+	func settingNavigationBar() {
 		let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 		navigationController?.navigationBar.titleTextAttributes = textAttributes
-
 		navigationController?.navigationBar.barTintColor = UIColor.black
 		navigationController?.navigationBar.isTranslucent = true
 		navigationController?.navigationBar.tintColor = UIColor.white
+	}
 
+	func settingCollectionView() {
 		collectionDescriptionView.backgroundColor = UIColor.black
 		collectionDescriptionView.delegate = self
 		collectionDescriptionView.dataSource = self
@@ -100,9 +108,9 @@ private extension DescriptionPictureViewController {
 		)
 
 		collectionDescriptionView.register(
-			HeaderForPictureView.self,
+			HeaderPictureDescriptionView.self,
 			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-			withReuseIdentifier: HeaderForPictureView.identifierHeaderID
+			withReuseIdentifier: HeaderPictureDescriptionView.identifierHeaderID
 		)
 
 		self.collectionDescriptionView.register(
@@ -119,33 +127,11 @@ private extension DescriptionPictureViewController {
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
 		collectionDescriptionView.snp.makeConstraints { make in
-			make.top.equalToSuperview().inset(-100)
+			make.top.equalToSuperview()
 			make.left.equalToSuperview()
 			make.right.equalToSuperview()
 			make.bottom.equalToSuperview()
 		}
-	}
-}
-
-// - MARK: Add Protocol.
-extension DescriptionPictureViewController: IDescriptionPictureViewLogic {
-	func render(model: MainPicturesModel.ViewModel.Card) {
-		self.modelForView = model
-		self.currentHeight = calculateHeight(currentText: modelForView.description) + (padding + 2) + 100
-		collectionDescriptionView.reloadData()
-	}
-}
-
-// - MARK: Logic.
-private extension DescriptionPictureViewController {
-
-}
-
-// - MARK: Iterator
-private extension DescriptionPictureViewController {
-	/// Запрос данных в Iterator.
-	func getNetwork() {
-		iterator?.fetchData()
 	}
 }
 
@@ -161,10 +147,10 @@ extension DescriptionPictureViewController: UICollectionViewDataSource, UICollec
 		case UICollectionView.elementKindSectionHeader:
 			let headerView = collectionView.dequeueReusableSupplementaryView(
 				ofKind: kind,
-				withReuseIdentifier: HeaderForPictureView.identifierHeaderID,
+				withReuseIdentifier: HeaderPictureDescriptionView.identifierHeaderID,
 				for: indexPath
 			)
-			guard let typedHeaderView = headerView as? HeaderForPictureView else {
+			guard let typedHeaderView = headerView as? HeaderPictureDescriptionView else {
 				return headerView
 			}
 				if let data = modelForView.data {
@@ -206,12 +192,9 @@ extension DescriptionPictureViewController: UICollectionViewDataSource, UICollec
 		return cell
 	}
 
-//	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//		guard let layout = customLayout as? UICollectionViewFlowLayout else { return }
-//		let offsetY = scrollView.contentOffset.y
-//
-//		layout.sectionHeadersPinToVisibleBounds = offsetY < 0
-//	}
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		title = scrollView.contentOffset.y >= 120 ? modelForView.title : ""
+	}
 }
 
 extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
@@ -241,30 +224,31 @@ extension DescriptionPictureViewController: UICollectionViewDelegateFlowLayout {
 	}
 }
 
-private extension DescriptionPictureViewController {
-	private func calculateHeight(currentText: String) -> CGFloat {
-		let attribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]
-		let attributeText = NSAttributedString(string: currentText, attributes: attribute)
-		let constraintBox = CGSize(width: view.frame.width - (padding * 2), height: .greatestFiniteMagnitude)
-		let textHeight = attributeText.boundingRect(
-			with: constraintBox,
-			options: [.usesLineFragmentOrigin,
-		   .usesFontLeading],
-			context: nil
-		).height
-		return textHeight
-	}
-}
-
 // - MARK: Fabric UIElement.
 private extension DescriptionPictureViewController {
 	func createCollectionView() -> UICollectionView {
-		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: customLayout)
-		customLayout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 200)
-		customLayout.scrollDirection = .vertical
-		collectionViewLayout.invalidateLayout()
+		let layout = StretchyHeaderLayout()
+		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		layout.headerReferenceSize = CGSize(width: self.view.frame.width, height: 200)
+		layout.scrollDirection = .vertical
 
 		collectionView.showsHorizontalScrollIndicator = false
 		return collectionView
+	}
+}
+
+// - MARK: Add Protocol.
+extension DescriptionPictureViewController: IDescriptionPictureViewLogic {
+	func render(model: MainPicturesModel.ViewModel.Card) {
+		self.modelForView = model
+		collectionDescriptionView.reloadData()
+	}
+}
+
+// - MARK: Iterator
+private extension DescriptionPictureViewController {
+	/// Запрос данных в Iterator.
+	func getNetwork() {
+		iterator?.fetchData()
 	}
 }

@@ -1,37 +1,32 @@
 //
-//  CellForCollectionPictures.swift
+//  CellForCollectionSearch.swift
 //  NASA Day Picture
 //
-//  Created by Steven Kirke on 09.02.2024.
+//  Created by Steven Kirke on 12.02.2024.
 //
 
 import UIKit
 import SnapKit
 
-protocol ICellForCollectionPicturesHendler {
-	func returnDataImage(returnImage: Data?, indexPath: Int)
-}
-
-final class CellForCollectionPictures: UICollectionViewCell {
+final class CellForCollectionSearch: UICollectionViewCell {
 
 	// MARK: - Public properties
 	var indexPath: Int = 0
-	static let reuseIdentifier = "CellForCollectionPictures.cell"
+	static let reuseIdentifier = "CellForCollectionSearch.cell"
 	lazy var labelTitle = createUILabel()
-	var handlerDelegate: ICellForCollectionPicturesHendler?
-	var currentURL: URL?
 	// MARK: - Dependencies
 
 	// MARK: - Private properties
 	private lazy var imageBackground = createImage()
 	private lazy var indicatorView = createIndicator()
 	private var isLoadImage: Bool = false
-	final private var safeImage: String = ""
+	var currentURL: URL?
+	private var safeImage: String = ""
+
 	// MARK: - Initializator
 
-	convenience init(handlerDelegate: ICellForCollectionPicturesHendler?) {
+	convenience init() {
 		self.init(frame: CGRect.zero)
-		self.handlerDelegate = handlerDelegate
 	}
 
 	override init(frame: CGRect) {
@@ -49,8 +44,7 @@ final class CellForCollectionPictures: UICollectionViewCell {
 	// MARK: - Public methods
 	func downloadImage(imageURL: URL) {
 		self.indicatorView.startAnimating()
-		self.loadImage(url: imageURL) { returnData in
-			self.handlerDelegate?.returnDataImage(returnImage: returnData, indexPath: self.indexPath)
+		self.loadImage(url: imageURL) {
 			self.indicatorView.stopAnimating()
 			self.indicatorView.isHidden = true
 		}
@@ -58,7 +52,7 @@ final class CellForCollectionPictures: UICollectionViewCell {
 }
 
 // - MARK: Add UIView in Controler
-private extension CellForCollectionPictures {
+private extension CellForCollectionSearch {
 	/// Добавление элементов UIView в Controller.
 	func addUIView() {
 		let views: [UIView] = [indicatorView, imageBackground, labelTitle]
@@ -67,7 +61,7 @@ private extension CellForCollectionPictures {
 }
 
 // - MARK: Initialisation configuration
-private extension CellForCollectionPictures {
+private extension CellForCollectionSearch {
 	/// Настройка UI элементов
 	func setupConfiguration() {
 		imageBackground.clipsToBounds = true
@@ -78,13 +72,12 @@ private extension CellForCollectionPictures {
 		labelTitle.font = UIFont(name: "CeraRoundPro-Medium", size: 18)
 		labelTitle.textAlignment = .center
 		labelTitle.numberOfLines = 2
-
 		indicatorView.color = UIColor.white
 	}
 }
 
 // - MARK: Initialisation constraint elements.
-private extension CellForCollectionPictures {
+private extension CellForCollectionSearch {
 	/// Верстка элементов UI.
 	/// - Note: Добавление constraints для UIView элементов.
 	func setupLayout() {
@@ -112,7 +105,7 @@ private extension CellForCollectionPictures {
 }
 
 // - MARK: Fabric UI Element.
-private extension CellForCollectionPictures {
+private extension CellForCollectionSearch {
 	func createUILabel() -> UILabel {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -136,8 +129,8 @@ private extension CellForCollectionPictures {
 	}
 }
 
-extension CellForCollectionPictures {
-	func loadImage(url: URL, completion: @escaping ((Data?) -> Void)) {
+extension CellForCollectionSearch {
+	func loadImage(url: URL, completion: @escaping (() -> Void)) {
 
 		let writeURL = url.absoluteString
 		if safeImage != writeURL {
@@ -150,16 +143,16 @@ extension CellForCollectionPictures {
 					let data = data, error == nil,
 					let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
 					let image = UIImage(data: data) else {
-					completion(data)
+					completion()
 					return
 				}
 				let currentURL = self.safeImage
 				if writeURL != currentURL {
-					completion(data)
+					completion()
 					return
 				}
 				self.imageBackground.image = image
-				completion(data)
+				completion()
 			}
 		}.resume()
 	}

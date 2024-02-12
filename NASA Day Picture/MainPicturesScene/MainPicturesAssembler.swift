@@ -11,7 +11,7 @@ final class MainPicturesAssembler {
 	func configurator(delegate: IMainPictureDelegate) -> UIViewController {
 		let networkManager = NetworkManager()
 		let decodeGSONManager = DecodeJsonManager()
-		let convectorDTO = ConvertService()
+		let convectorDTO = ConvertServiceForPictures()
 		let worker = MainPicturesWorker(
 			networkManager: networkManager,
 			decodeJSONManager: decodeGSONManager,
