@@ -1,5 +1,8 @@
 #  NASA Day Pictures
 
+![forRepository](https://github.com/StevenKirke/NASA-Day-Picture/assets/33865213/b0892130-f3d4-429b-badf-fcf7254f2e67)
+
+
 ## Description
 #### Данное приложение является тестовой работой, для выявление навыков работы с:
 ##### * Многопоточностью,
